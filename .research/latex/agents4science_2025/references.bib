@@ -5,3 +5,733 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{ai-2023-ntk,
+ abstract = {Fine-tuning a pre-trained language model (PLM) emerges as the predominant
+strategy in many natural language processing applications. However, this
+process is known to be expensive, especially on edge devices with low computing
+power. While general approaches (e.g. quantization and distillation) have been
+widely studied to reduce the compute/memory of PLM fine-tuning, one-shot
+compression techniques specifically designed for fine-tuning remain largely
+unexplored. In this paper, we investigate the neural tangent kernel
+(NTK)--which reveals the gradient descent dynamics of neural networks--of the
+multilayer perceptrons (MLP) modules in a PLM and propose to coin a lightweight
+PLM through NTK-approximating MLP fusion. By incorporating NTK into the
+compression process, MLP Fusion not only preserves the original model's output
+but also maintains its training dynamics. To achieve this, we reconsider the
+MLP as a bundle of sub-MLPs and cluster them into a given number of centroids,
+which can then be restored as a compressed MLP and surprisingly well
+approximate the NTK of the original PLM. Our approach is applicable to both
+standard MLP modules and Mixture-of-Experts (MoE) modules in PLMs,
+demonstrating its scalability and versatility. Additionally, we provide
+theoretical derivations to demonstrate how the proposed compression preserves
+the NTK. Extensive experiments of PLM fine-tuning on both natural language
+understanding and generation tasks are provided to verify the effectiveness of
+MLP fusion. Our code is available at https://github.com/weitianxin/MLP_Fusion.},
+ arxiv_url = {https://arxiv.org/pdf/2307.08941v3.pdf},
+ author = {Mengting Ai and Tianxin Wei and Yifan Chen and Zeming Guo and Jingrui He},
+ github_url = {https://github.com/weitianxin/MLP_Fusion},
+ title = {NTK-approximating MLP Fusion for Efficient Language Model Fine-tuning},
+ year = {2023}
+}
+
+@article{author-year-efficient,
+ title = {Efficient Combination of Rematerialization and Offloading for Training DNNs}
+}
+
+@article{author-year-model,
+ title = {MODeL: Memory Optimizations for Deep Learning}
+}
+
+@article{author-year-shapeshifter,
+ title = {Shapeshifter: a Parameter-efficient Transformer using Factorized Reshaped Matrices}
+}
+
+@article{chen-2023-parameter,
+ abstract = {Parameter-efficient fine-tuning aims to achieve performance comparable to
+fine-tuning, using fewer trainable parameters. Several strategies (e.g.,
+Adapters, prefix tuning, BitFit, and LoRA) have been proposed. However, their
+designs are hand-crafted separately, and it remains unclear whether certain
+design patterns exist for parameter-efficient fine-tuning. Thus, we present a
+parameter-efficient fine-tuning design paradigm and discover design patterns
+that are applicable to different experimental settings. Instead of focusing on
+designing another individual tuning strategy, we introduce parameter-efficient
+fine-tuning design spaces that parameterize tuning structures and tuning
+strategies. Specifically, any design space is characterized by four components:
+layer grouping, trainable parameter allocation, tunable groups, and strategy
+assignment. Starting from an initial design space, we progressively refine the
+space based on the model quality of each design choice and make greedy
+selection at each stage over these four components. We discover the following
+design patterns: (i) group layers in a spindle pattern; (ii) allocate the
+number of trainable parameters to layers uniformly; (iii) tune all the groups;
+(iv) assign proper tuning strategies to different groups. These design patterns
+result in new parameter-efficient fine-tuning methods. We show experimentally
+that these methods consistently and significantly outperform investigated
+parameter-efficient fine-tuning strategies across different backbone models and
+different tasks in natural language processing.},
+ arxiv_url = {https://arxiv.org/pdf/2301.01821v1.pdf},
+ author = {Jiaao Chen and Aston Zhang and Xingjian Shi and Mu Li and Alex Smola and Diyi Yang},
+ github_url = {https://github.com/amazon-science/peft-design-spaces},
+ title = {Parameter-Efficient Fine-Tuning Design Spaces},
+ year = {2023}
+}
+
+@article{ding-2024-memoryformer,
+ abstract = {In order to reduce the computational complexity of large language models,
+great efforts have been made to to improve the efficiency of transformer models
+such as linear attention and flash-attention. However, the model size and
+corresponding computational complexity are constantly scaled up in pursuit of
+higher performance. In this work, we present MemoryFormer, a novel transformer
+architecture which significantly reduces the computational complexity (FLOPs)
+from a new perspective. We eliminate nearly all the computations of the
+transformer model except for the necessary computation required by the
+multi-head attention operation. This is made possible by utilizing an
+alternative method for feature transformation to replace the linear projection
+of fully-connected layers. Specifically, we first construct a group of
+in-memory lookup tables that store a large amount of discrete vectors to
+replace the weight matrix used in linear projection. We then use a hash
+algorithm to retrieve a correlated subset of vectors dynamically based on the
+input embedding. The retrieved vectors combined together will form the output
+embedding, which provides an estimation of the result of matrix multiplication
+operation in a fully-connected layer. Compared to conducting matrix
+multiplication, retrieving data blocks from memory is a much cheaper operation
+which requires little computations. We train MemoryFormer from scratch and
+conduct extensive experiments on various benchmarks to demonstrate the
+effectiveness of the proposed model.},
+ arxiv_url = {https://arxiv.org/pdf/2411.12992v1.pdf},
+ author = {Ning Ding and Yehui Tang and Haochen Qin and Zhenli Zhou and Chao Xu and Lin Li and Kai Han and Heng Liao and Yunhe Wang},
+ title = {MemoryFormer : Minimize Transformer Computation by Removing Fully-Connected Layers},
+ year = {2024}
+}
+
+@article{jiang-2023-res,
+ abstract = {Parameter-efficient tuning has become a trend in transferring large-scale
+foundation models to downstream applications. Existing methods typically embed
+some light-weight tuners into the backbone, where both the design and the
+learning of the tuners are highly dependent on the base model. This work offers
+a new tuning paradigm, dubbed Res-Tuning, which intentionally unbinds tuners
+from the backbone. With both theoretical and empirical evidence, we show that
+popular tuning approaches have their equivalent counterparts under our
+unbinding formulation, and hence can be integrated into our framework
+effortlessly. Thanks to the structural disentanglement, we manage to free the
+design of tuners from the network architecture, facilitating flexible
+combination of various tuning strategies. We further propose a memory-efficient
+variant of Res-Tuning, where the bypass i.e., formed by a sequence of tuners)
+is effectively detached from the main branch, such that the gradients are
+back-propagated only to the tuners but not to the backbone. Such a detachment
+also allows one-time backbone forward for multi-task inference. Extensive
+experiments on both discriminative and generative tasks demonstrate the
+superiority of our method over existing alternatives from the perspectives of
+efficacy and efficiency. Project page:
+$\href{https://res-tuning.github.io/}{\textit{https://res-tuning.github.io/}}$.},
+ arxiv_url = {https://arxiv.org/pdf/2310.19859v1.pdf},
+ author = {Zeyinzi Jiang and Chaojie Mao and Ziyuan Huang and Ao Ma and Yiliang Lv and Yujun Shen and Deli Zhao and Jingren Zhou},
+ title = {Res-Tuning: A Flexible and Efficient Tuning Paradigm via Unbinding Tuner from Backbone},
+ year = {2023}
+}
+
+@article{kitaev-2020-reformer,
+ abstract = {Large Transformer models routinely achieve state-of-the-art results on a
+number of tasks but training these models can be prohibitively costly,
+especially on long sequences. We introduce two techniques to improve the
+efficiency of Transformers. For one, we replace dot-product attention by one
+that uses locality-sensitive hashing, changing its complexity from O($L^2$) to
+O($L\log L$), where $L$ is the length of the sequence. Furthermore, we use
+reversible residual layers instead of the standard residuals, which allows
+storing activations only once in the training process instead of $N$ times,
+where $N$ is the number of layers. The resulting model, the Reformer, performs
+on par with Transformer models while being much more memory-efficient and much
+faster on long sequences.},
+ arxiv_url = {https://arxiv.org/pdf/2001.04451v2.pdf},
+ author = {Nikita Kitaev and Łukasz Kaiser and Anselm Levskaya},
+ github_url = {https://github.com/google/trax},
+ title = {Reformer: The Efficient Transformer},
+ year = {2020}
+}
+
+@article{liao-2023-make,
+ abstract = {Parameter-efficient fine-tuning (PEFT) of pre-trained language models (PLMs)
+has emerged as a highly successful approach, with training only a small number
+of parameters without sacrificing performance and becoming the de-facto
+learning paradigm with the increasing size of PLMs. However, existing PEFT
+methods are not memory-efficient, because they still require caching most of
+the intermediate activations for the gradient calculation, akin to fine-tuning.
+One effective way to reduce the activation memory is to apply a reversible
+model, so the intermediate activations are not necessary to be cached and can
+be recomputed. Nevertheless, modifying a PLM to its reversible variant is not
+straightforward, since the reversible model has a distinct architecture from
+the currently released PLMs. In this paper, we first investigate what is a key
+factor for the success of existing PEFT methods, and realize that it's
+essential to preserve the PLM's starting point when initializing a PEFT method.
+With this finding, we propose memory-efficient fine-tuning (MEFT) that inserts
+adapters into a PLM, preserving the PLM's starting point and making it
+reversible without additional pre-training. We evaluate MEFT on the GLUE
+benchmark and five question-answering tasks with various backbones, BERT,
+RoBERTa, BART and OPT. MEFT significantly reduces the activation memory up to
+84% of full fine-tuning with a negligible amount of trainable parameters.
+Moreover, MEFT achieves the same score on GLUE and a comparable score on the
+question-answering tasks as full fine-tuning. A similar finding is also
+observed for the image classification task.},
+ arxiv_url = {https://arxiv.org/pdf/2306.00477v4.pdf},
+ author = {Baohao Liao and Shaomu Tan and Christof Monz},
+ github_url = {https://github.com/baohaoliao/mefts},
+ title = {Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning},
+ year = {2023}
+}
+
+@article{liu-2023-blockwise,
+ abstract = {Transformers have emerged as the cornerstone of state-of-the-art natural
+language processing models, showcasing exceptional performance across a wide
+range of AI applications. However, the memory demands posed by the
+self-attention mechanism and the large feedforward network in Transformers
+limit their ability to handle long sequences, thereby creating challenges for
+tasks involving multiple long sequences or long-term dependencies. We present a
+distinct approach, Blockwise Parallel Transformer (BPT), that leverages
+blockwise computation of self-attention and feedforward network fusion to
+minimize memory costs. By processing longer input sequences while maintaining
+memory efficiency, BPT enables training sequences 32 times longer than vanilla
+Transformers and up to 4 times longer than previous memory-efficient methods.
+Extensive experiments on language modeling and reinforcement learning tasks
+demonstrate the effectiveness of BPT in reducing memory requirements and
+improving performance.},
+ arxiv_url = {https://arxiv.org/pdf/2305.19370v3.pdf},
+ author = {Hao Liu and Pieter Abbeel},
+ github_url = {https://github.com/lhao499/llm_large_context},
+ title = {Blockwise Parallel Transformers for Large Context Models},
+ year = {2023}
+}
+
+@article{liu-2024-mobilellm,
+ abstract = {This paper addresses the growing need for efficient large language models
+(LLMs) on mobile devices, driven by increasing cloud costs and latency
+concerns. We focus on designing top-quality LLMs with fewer than a billion
+parameters, a practical choice for mobile deployment. Contrary to prevailing
+belief emphasizing the pivotal role of data and parameter quantity in
+determining model quality, our investigation underscores the significance of
+model architecture for sub-billion scale LLMs. Leveraging deep and thin
+architectures, coupled with embedding sharing and grouped-query attention
+mechanisms, we establish a strong baseline network denoted as MobileLLM, which
+attains a remarkable 2.7%/4.3% accuracy boost over preceding 125M/350M
+state-of-the-art models. Additionally, we propose an immediate block-wise
+weight-sharing approach with no increase in model size and only marginal
+latency overhead. The resultant models, denoted as MobileLLM-LS, demonstrate a
+further accuracy enhancement of 0.7%/0.8% than MobileLLM 125M/350M. Moreover,
+MobileLLM model family shows significant improvements compared to previous
+sub-billion models on chat benchmarks, and demonstrates close correctness to
+LLaMA-v2 7B in API calling tasks, highlighting the capability of small models
+for common on-device use cases.},
+ arxiv_url = {https://arxiv.org/pdf/2402.14905v2.pdf},
+ author = {Zechun Liu and Changsheng Zhao and Forrest Iandola and Chen Lai and Yuandong Tian and Igor Fedorov and Yunyang Xiong and Ernie Chang and Yangyang Shi and Raghuraman Krishnamoorthi and Liangzhen Lai and Vikas Chandra},
+ title = {MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases},
+ year = {2024}
+}
+
+@article{malladi-2023-fine,
+ abstract = {Fine-tuning language models (LMs) has yielded success on diverse downstream
+tasks, but as LMs grow in size, backpropagation requires a prohibitively large
+amount of memory. Zeroth-order (ZO) methods can in principle estimate gradients
+using only two forward passes but are theorized to be catastrophically slow for
+optimizing large models. In this work, we propose a memory-efficient
+zerothorder optimizer (MeZO), adapting the classical ZO-SGD method to operate
+in-place, thereby fine-tuning LMs with the same memory footprint as inference.
+For example, with a single A100 80GB GPU, MeZO can train a 30-billion parameter
+model, whereas fine-tuning with backpropagation can train only a 2.7B LM with
+the same budget. We conduct comprehensive experiments across model types
+(masked and autoregressive LMs), model scales (up to 66B), and downstream tasks
+(classification, multiple-choice, and generation). Our results demonstrate that
+(1) MeZO significantly outperforms in-context learning and linear probing; (2)
+MeZO achieves comparable performance to fine-tuning with backpropagation across
+multiple tasks, with up to 12x memory reduction and up to 2x GPU-hour reduction
+in our implementation; (3) MeZO is compatible with both full-parameter and
+parameter-efficient tuning techniques such as LoRA and prefix tuning; (4) MeZO
+can effectively optimize non-differentiable objectives (e.g., maximizing
+accuracy or F1). We support our empirical findings with theoretical insights,
+highlighting how adequate pre-training and task prompts enable MeZO to
+fine-tune huge models, despite classical ZO analyses suggesting otherwise.},
+ arxiv_url = {https://arxiv.org/pdf/2305.17333v3.pdf},
+ author = {Sadhika Malladi and Tianyu Gao and Eshaan Nichani and Alex Damian and Jason D. Lee and Danqi Chen and Sanjeev Arora},
+ github_url = {https://github.com/princeton-nlp/MeZO},
+ title = {Fine-Tuning Language Models with Just Forward Passes},
+ year = {2023}
+}
+
+@article{miles-2024-velora,
+ abstract = {Large language models (LLMs) have recently emerged as powerful tools for
+tackling many language-processing tasks. Despite their success, training and
+fine-tuning these models is still far too computationally and memory intensive.
+In this paper, we identify and characterise the important components needed for
+effective model convergence using gradient descent. In doing so we find that
+the intermediate activations used to implement backpropagation can be
+excessively compressed without incurring any degradation in performance. This
+result leads us to a cheap and memory-efficient algorithm for both fine-tuning
+and pre-training LLMs. The proposed algorithm simply divides the tokens up into
+smaller sub-tokens before projecting them onto a fixed 1-dimensional subspace
+during the forward pass. These features are then coarsely reconstructed during
+the backward pass to implement the update rules. We confirm the effectiveness
+of our algorithm as being complimentary to many state-of-the-art PEFT methods
+on the VTAB-1k fine-tuning benchmark. Furthermore, we outperform QLoRA for
+fine-tuning LLaMA and show competitive performance against other
+memory-efficient pre-training methods on the large-scale C4 dataset.},
+ arxiv_url = {https://arxiv.org/pdf/2405.17991v2.pdf},
+ author = {Roy Miles and Pradyumna Reddy and Ismail Elezi and Jiankang Deng},
+ github_url = {https://github.com/roymiles/VeLoRA},
+ title = {VeLoRA: Memory Efficient Training using Rank-1 Sub-Token Projections},
+ year = {2024}
+}
+
+@article{novikov-2022-few,
+ abstract = {Memory footprint is one of the main limiting factors for large neural network
+training. In backpropagation, one needs to store the input to each operation in
+the computational graph. Every modern neural network model has quite a few
+pointwise nonlinearities in its architecture, and such operation induces
+additional memory costs which -- as we show -- can be significantly reduced by
+quantization of the gradients. We propose a systematic approach to compute
+optimal quantization of the retained gradients of the pointwise nonlinear
+functions with only a few bits per each element. We show that such
+approximation can be achieved by computing optimal piecewise-constant
+approximation of the derivative of the activation function, which can be done
+by dynamic programming. The drop-in replacements are implemented for all
+popular nonlinearities and can be used in any existing pipeline. We confirm the
+memory reduction and the same convergence on several open benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2202.00441v2.pdf},
+ author = {Georgii Novikov and Daniel Bershatsky and Julia Gusak and Alex Shonenkov and Denis Dimitrov and Ivan Oseledets},
+ title = {Few-bit Backward: Quantized Gradients of Activation Functions for Memory Footprint Reduction},
+ year = {2022}
+}
+
+@article{park-2024-any,
+ abstract = {Recently, considerable efforts have been directed towards compressing Large
+Language Models (LLMs), which showcase groundbreaking capabilities across
+diverse applications but entail significant deployment costs due to their large
+sizes. Meanwhile, much less attention has been given to mitigating the costs
+associated with deploying multiple LLMs of varying sizes despite its practical
+significance. Thus, this paper introduces \emph{any-precision LLM}, extending
+the concept of any-precision DNN to LLMs. Addressing challenges in
+any-precision LLM, we propose a lightweight method for any-precision
+quantization of LLMs, leveraging a post-training quantization framework, and
+develop a specialized software engine for its efficient serving. As a result,
+our solution significantly reduces the high costs of deploying multiple,
+different-sized LLMs by overlaying LLMs quantized to varying bit-widths, such
+as 3, 4, ..., $n$ bits, into a memory footprint comparable to a single $n$-bit
+LLM. All the supported LLMs with varying bit-widths demonstrate
+state-of-the-art model quality and inference throughput, proving itself to be a
+compelling option for deployment of multiple, different-sized LLMs. Our code is
+open-sourced and available online.},
+ arxiv_url = {https://arxiv.org/pdf/2402.10517v4.pdf},
+ author = {Yeonhong Park and Jake Hyun and SangLyul Cho and Bonggeun Sim and Jae W. Lee},
+ title = {Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs},
+ year = {2024}
+}
+
+@article{shah-2020-memory,
+ abstract = {Deep learning is slowly, but steadily, hitting a memory bottleneck. While the
+tensor computation in top-of-the-line GPUs increased by 32x over the last five
+years, the total available memory only grew by 2.5x. This prevents researchers
+from exploring larger architectures, as training large networks requires more
+memory for storing intermediate outputs. In this paper, we present MONeT, an
+automatic framework that minimizes both the memory footprint and computational
+overhead of deep networks. MONeT jointly optimizes the checkpointing schedule
+and the implementation of various operators. MONeT is able to outperform all
+prior hand-tuned operations as well as automated checkpointing. MONeT reduces
+the overall memory requirement by 3x for various PyTorch models, with a 9-16%
+overhead in computation. For the same computation cost, MONeT requires 1.2-1.8x
+less memory than current state-of-the-art automated checkpointing frameworks.
+Our code is available at https://github.com/utsaslab/MONeT.},
+ arxiv_url = {https://arxiv.org/pdf/2010.14501v3.pdf},
+ author = {Aashaka Shah and Chao-Yuan Wu and Jayashree Mohan and Vijay Chidambaram and Philipp Krähenbühl},
+ github_url = {https://github.com/utsaslab/MONeT},
+ title = {Memory Optimization for Deep Networks},
+ year = {2020}
+}
+
+@article{sung-2022-lst,
+ abstract = {Fine-tuning large pre-trained models on downstream tasks has been adopted in
+a variety of domains recently. However, it is costly to update the entire
+parameter set of large pre-trained models. Although recently proposed
+parameter-efficient transfer learning (PETL) techniques allow updating a small
+subset of parameters (e.g. only using 2% of parameters) inside a pre-trained
+backbone network for a new task, they only reduce the training memory
+requirement by up to 30%. This is because the gradient computation for the
+trainable parameters still requires backpropagation through the large
+pre-trained backbone model. To address this, we propose Ladder Side-Tuning
+(LST), a new PETL technique that can reduce training memory requirements by
+more substantial amounts. Unlike existing parameter-efficient methods that
+insert additional parameters inside backbone networks, we train a ladder side
+network, a small and separate network that takes intermediate activations as
+input via shortcut connections (called ladders) from backbone networks and
+makes predictions. LST has significantly lower memory requirements than
+previous methods, because it does not require backpropagation through the
+backbone network, but instead only through the side network and ladder
+connections. We evaluate our method with various models (T5 and CLIP-T5) on
+both NLP (GLUE) and vision-and-language (VQA, GQA, NLVR2 , MSCOCO) tasks. LST
+saves 69% of the memory costs to fine-tune the whole network, while other
+methods only save 26% of that in similar parameter usages (hence, 2.7x more
+memory savings). Moreover, LST achieves higher accuracy than Adapter and LoRA
+in a low-memory regime. To further show the advantage of this better memory
+efficiency, we also apply LST to larger T5 models, attaining better GLUE
+performance than full fine-tuning and other PETL methods. The
+accuracy-efficiency trade-off also holds on VL tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2206.06522v2.pdf},
+ author = {Yi-Lin Sung and Jaemin Cho and Mohit Bansal},
+ github_url = {https://github.com/ylsung/Ladder-Side-Tuning},
+ title = {LST: Ladder Side-Tuning for Parameter and Memory Efficient Transfer Learning},
+ year = {2022}
+}
+
+@article{wu-2024-reft,
+ abstract = {Parameter-efficient finetuning (PEFT) methods seek to adapt large neural
+models via updates to a small number of weights. However, much prior
+interpretability work has shown that representations encode rich semantic
+information, suggesting that editing representations might be a more powerful
+alternative. We pursue this hypothesis by developing a family of Representation
+Finetuning (ReFT) methods. ReFT methods operate on a frozen base model and
+learn task-specific interventions on hidden representations. We define a strong
+instance of the ReFT family, Low-rank Linear Subspace ReFT (LoReFT), and we
+identify an ablation of this method that trades some performance for increased
+efficiency. Both are drop-in replacements for existing PEFTs and learn
+interventions that are 15x--65x more parameter-efficient than LoRA. We showcase
+LoReFT on eight commonsense reasoning tasks, four arithmetic reasoning tasks,
+instruction-tuning, and GLUE. In all these evaluations, our ReFTs deliver the
+best balance of efficiency and performance, and almost always outperform
+state-of-the-art PEFTs. We release a generic ReFT training library publicly at
+https://github.com/stanfordnlp/pyreft.},
+ arxiv_url = {https://arxiv.org/pdf/2404.03592v3.pdf},
+ author = {Zhengxuan Wu and Aryaman Arora and Zheng Wang and Atticus Geiger and Dan Jurafsky and Christopher D. Manning and Christopher Potts},
+ github_url = {https://github.com/stanfordnlp/pyreft},
+ title = {ReFT: Representation Finetuning for Language Models},
+ year = {2024}
+}
+
+@article{yang-2024-reducing,
+ abstract = {Fine-tuning pretrained large models to downstream tasks is an important
+problem, which however suffers from huge memory overhead due to large-scale
+parameters. This work strives to reduce memory overhead in fine-tuning from
+perspectives of activation function and layer normalization. To this end, we
+propose the Approximate Backpropagation (Approx-BP) theory, which provides the
+theoretical feasibility of decoupling the forward and backward passes. We apply
+our Approx-BP theory to backpropagation training and derive memory-efficient
+alternatives of GELU and SiLU activation functions, which use derivative
+functions of ReLUs in the backward pass while keeping their forward pass
+unchanged. In addition, we introduce a Memory-Sharing Backpropagation strategy,
+which enables the activation memory to be shared by two adjacent layers,
+thereby removing activation memory usage redundancy. Our method neither induces
+extra computation nor reduces training efficiency. We conduct extensive
+experiments with pretrained vision and language models, and the results
+demonstrate that our proposal can reduce up to $\sim$$30\%$ of the peak memory
+usage. Our code is released at https://github.com/yyyyychen/LowMemoryBP.},
+ arxiv_url = {https://arxiv.org/pdf/2406.16282v1.pdf},
+ author = {Yuchen Yang and Yingdong Shi and Cheems Wang and Xiantong Zhen and Yuxuan Shi and Jun Xu},
+ title = {Reducing Fine-Tuning Memory Overhead by Approximate and Memory-Sharing Backpropagation},
+ year = {2024}
+}
+
+@article{zhang-2023-coop,
+ abstract = {Tensor rematerialization allows the training of deep neural networks (DNNs)
+under limited memory budgets by checkpointing the models and recomputing the
+evicted tensors as needed. However, the existing tensor rematerialization
+techniques overlook the memory system in deep learning frameworks and
+implicitly assume that free memory blocks at different addresses are identical.
+Under this flawed assumption, discontiguous tensors are evicted, among which
+some are not used to allocate the new tensor. This leads to severe memory
+fragmentation and increases the cost of potential rematerializations. To
+address this issue, we propose to evict tensors within a sliding window to
+ensure all evictions are contiguous and are immediately used. Furthermore, we
+proposed cheap tensor partitioning and recomputable in-place to further reduce
+the rematerialization cost by optimizing the tensor allocation. We named our
+method Coop as it is a co-optimization of tensor allocation and tensor
+rematerialization. We evaluated Coop on eight representative DNNs. The
+experimental results demonstrate that Coop achieves up to $2\times$ memory
+saving and hugely reduces compute overhead, search latency, and memory
+fragmentation compared to the state-of-the-art baselines.},
+ arxiv_url = {https://arxiv.org/pdf/2311.00591v1.pdf},
+ author = {Jianhao Zhang and Shihan Ma and Peihong Liu and Jinhui Yuan},
+ title = {Coop: Memory is not a Commodity},
+ year = {2023}
+}
+
+@article{zhang-2024-spectral,
+ abstract = {Recent developments in Parameter-Efficient Fine-Tuning (PEFT) methods for
+pretrained deep neural networks have captured widespread interest. In this
+work, we study the enhancement of current PEFT methods by incorporating the
+spectral information of pretrained weight matrices into the fine-tuning
+procedure. We investigate two spectral adaptation mechanisms, namely additive
+tuning and orthogonal rotation of the top singular vectors, both are done via
+first carrying out Singular Value Decomposition (SVD) of pretrained weights and
+then fine-tuning the top spectral space. We provide a theoretical analysis of
+spectral fine-tuning and show that our approach improves the rank capacity of
+low-rank adapters given a fixed trainable parameter budget. We show through
+extensive experiments that the proposed fine-tuning model enables better
+parameter efficiency and tuning performance as well as benefits multi-adapter
+fusion.},
+ arxiv_url = {https://arxiv.org/pdf/2405.13952v2.pdf},
+ author = {Fangzhao Zhang and Mert Pilanci},
+ github_url = {https://github.com/pilancilab/spectral_adapter},
+ title = {Spectral Adapter: Fine-Tuning in Spectral Space},
+ year = {2024}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author-year-github,
+ title = {GitHub - karpathy/nanoGPT: The simplest, fastest repository for train- ing/finetuning medium-sized GPTs. — github.com}
+}
+
+@article{bello-2021-lambdanetworks,
+ abstract = {We present lambda layers -- an alternative framework to self-attention -- for
+capturing long-range interactions between an input and structured contextual
+information (e.g. a pixel surrounded by other pixels). Lambda layers capture
+such interactions by transforming available contexts into linear functions,
+termed lambdas, and applying these linear functions to each input separately.
+Similar to linear attention, lambda layers bypass expensive attention maps, but
+in contrast, they model both content and position-based interactions which
+enables their application to large structured inputs such as images. The
+resulting neural network architectures, LambdaNetworks, significantly
+outperform their convolutional and attentional counterparts on ImageNet
+classification, COCO object detection and COCO instance segmentation, while
+being more computationally efficient. Additionally, we design LambdaResNets, a
+family of hybrid architectures across different scales, that considerably
+improves the speed-accuracy tradeoff of image classification models.
+LambdaResNets reach excellent accuracies on ImageNet while being 3.2 - 4.4x
+faster than the popular EfficientNets on modern machine learning accelerators.
+When training with an additional 130M pseudo-labeled images, LambdaResNets
+achieve up to a 9.5x speed-up over the corresponding EfficientNet checkpoints.},
+ arxiv_url = {https://arxiv.org/pdf/2102.08602v1.pdf},
+ author = {Irwan Bello},
+ title = {Lambdanetworks: Modeling long-range interactions without attention},
+ year = {2021}
+}
+
+@article{beltagy-2020-longformer,
+ abstract = {Transformer-based models are unable to process long sequences due to their
+self-attention operation, which scales quadratically with the sequence length.
+To address this limitation, we introduce the Longformer with an attention
+mechanism that scales linearly with sequence length, making it easy to process
+documents of thousands of tokens or longer. Longformer's attention mechanism is
+a drop-in replacement for the standard self-attention and combines a local
+windowed attention with a task motivated global attention. Following prior work
+on long-sequence transformers, we evaluate Longformer on character-level
+language modeling and achieve state-of-the-art results on text8 and enwik8. In
+contrast to most prior work, we also pretrain Longformer and finetune it on a
+variety of downstream tasks. Our pretrained Longformer consistently outperforms
+RoBERTa on long document tasks and sets new state-of-the-art results on WikiHop
+and TriviaQA. We finally introduce the Longformer-Encoder-Decoder (LED), a
+Longformer variant for supporting long document generative sequence-to-sequence
+tasks, and demonstrate its effectiveness on the arXiv summarization dataset.},
+ arxiv_url = {https://arxiv.org/pdf/2004.05150v2.pdf},
+ author = {Iz Beltagy and Matthew E. Peters and Arman Cohan},
+ title = {Longformer: The long-document transformer},
+ year = {2020}
+}
+
+@article{brown-2020-language,
+ abstract = {Recent work has demonstrated substantial gains on many NLP tasks and
+benchmarks by pre-training on a large corpus of text followed by fine-tuning on
+a specific task. While typically task-agnostic in architecture, this method
+still requires task-specific fine-tuning datasets of thousands or tens of
+thousands of examples. By contrast, humans can generally perform a new language
+task from only a few examples or from simple instructions - something which
+current NLP systems still largely struggle to do. Here we show that scaling up
+language models greatly improves task-agnostic, few-shot performance, sometimes
+even reaching competitiveness with prior state-of-the-art fine-tuning
+approaches. Specifically, we train GPT-3, an autoregressive language model with
+175 billion parameters, 10x more than any previous non-sparse language model,
+and test its performance in the few-shot setting. For all tasks, GPT-3 is
+applied without any gradient updates or fine-tuning, with tasks and few-shot
+demonstrations specified purely via text interaction with the model. GPT-3
+achieves strong performance on many NLP datasets, including translation,
+question-answering, and cloze tasks, as well as several tasks that require
+on-the-fly reasoning or domain adaptation, such as unscrambling words, using a
+novel word in a sentence, or performing 3-digit arithmetic. At the same time,
+we also identify some datasets where GPT-3's few-shot learning still struggles,
+as well as some datasets where GPT-3 faces methodological issues related to
+training on large web corpora. Finally, we find that GPT-3 can generate samples
+of news articles which human evaluators have difficulty distinguishing from
+articles written by humans. We discuss broader societal impacts of this finding
+and of GPT-3 in general.},
+ arxiv_url = {https://arxiv.org/pdf/2005.14165v4.pdf},
+ author = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+ title = {Language models are few-shot learners},
+ year = {2020}
+}
+
+@article{chen-2016-training,
+ abstract = {We propose a systematic approach to reduce the memory consumption of deep
+neural network training. Specifically, we design an algorithm that costs
+O(sqrt(n)) memory to train a n layer network, with only the computational cost
+of an extra forward pass per mini-batch. As many of the state-of-the-art models
+hit the upper bound of the GPU memory, our algorithm allows deeper and more
+complex models to be explored, and helps advance the innovations in deep
+learning research. We focus on reducing the memory cost to store the
+intermediate feature maps and gradients during training. Computation graph
+analysis is used for automatic in-place operation and memory sharing
+optimizations. We show that it is possible to trade computation for memory -
+giving a more memory efficient training algorithm with a little extra
+computation cost. In the extreme case, our analysis also shows that the memory
+consumption can be reduced to O(log n) with as little as O(n log n) extra cost
+for forward computation. Our experiments show that we can reduce the memory
+cost of a 1,000-layer deep residual network from 48G to 7G with only 30 percent
+additional running time cost on ImageNet problems. Similarly, significant
+memory cost reduction is observed in training complex recurrent neural networks
+on very long sequences.},
+ arxiv_url = {https://arxiv.org/pdf/1604.06174v2.pdf},
+ author = {Tianqi Chen and Bing Xu and Chiyuan Zhang and Carlos Guestrin},
+ title = {Training deep nets with sublinear memory cost},
+ year = {2016}
+}
+
+@article{chen-2021-evaluating,
+ abstract = {We introduce Codex, a GPT language model fine-tuned on publicly available
+code from GitHub, and study its Python code-writing capabilities. A distinct
+production version of Codex powers GitHub Copilot. On HumanEval, a new
+evaluation set we release to measure functional correctness for synthesizing
+programs from docstrings, our model solves 28.8% of the problems, while GPT-3
+solves 0% and GPT-J solves 11.4%. Furthermore, we find that repeated sampling
+from the model is a surprisingly effective strategy for producing working
+solutions to difficult prompts. Using this method, we solve 70.2% of our
+problems with 100 samples per problem. Careful investigation of our model
+reveals its limitations, including difficulty with docstrings describing long
+chains of operations and with binding operations to variables. Finally, we
+discuss the potential broader impacts of deploying powerful code generation
+technologies, covering safety, security, and economics.},
+ arxiv_url = {https://arxiv.org/pdf/2107.03374v2.pdf},
+ author = {Mark Chen and Jerry Tworek and Heewoo Jun and Qiming Yuan and Henrique Ponde de Oliveira Pinto and Jared Kaplan and Harri Edwards and Yuri Burda and Nicholas Joseph and Greg Brockman and Alex Ray and Raul Puri and Gretchen Krueger and Michael Petrov and Heidy Khlaaf and Girish Sastry and Pamela Mishkin and Brooke Chan and Scott Gray and Nick Ryder and Mikhail Pavlov and Alethea Power and Lukasz Kaiser and Mohammad Bavarian and Clemens Winter and Philippe Tillet and Felipe Petroski Such and Dave Cummings and Matthias Plappert and Fotios Chantzis and Elizabeth Barnes and Ariel Herbert-Voss and William Hebgen Guss and Alex Nichol and Alex Paino and Nikolas Tezak and Jie Tang and Igor Babuschkin and Suchir Balaji and Shantanu Jain and William Saunders and Christopher Hesse and Andrew N. Carr and Jan Leike and Josh Achiam and Vedant Misra and Evan Morikawa and Alec Radford and Matthew Knight and Miles Brundage and Mira Murati and Katie Mayer and Peter Welinder and Bob McGrew and Dario Amodei and Sam McCandlish and Ilya Sutskever and Wojciech Zaremba},
+ title = {Evaluating large language models trained on code},
+ year = {2021}
+}
+
+@article{chen-2022-pali,
+ abstract = {Effective scaling and a flexible task interface enable large language models
+to excel at many tasks. We present PaLI (Pathways Language and Image model), a
+model that extends this approach to the joint modeling of language and vision.
+PaLI generates text based on visual and textual inputs, and with this interface
+performs many vision, language, and multimodal tasks, in many languages. To
+train PaLI, we make use of large pre-trained encoder-decoder language models
+and Vision Transformers (ViTs). This allows us to capitalize on their existing
+capabilities and leverage the substantial cost of training them. We find that
+joint scaling of the vision and language components is important. Since
+existing Transformers for language are much larger than their vision
+counterparts, we train a large, 4-billion parameter ViT (ViT-e) to quantify the
+benefits from even larger-capacity vision models. To train PaLI, we create a
+large multilingual mix of pretraining tasks, based on a new image-text training
+set containing 10B images and texts in over 100 languages. PaLI achieves
+state-of-the-art in multiple vision and language tasks (such as captioning,
+visual question-answering, scene-text understanding), while retaining a simple,
+modular, and scalable design.},
+ arxiv_url = {https://arxiv.org/pdf/2209.06794v4.pdf},
+ author = {Xi Chen and Xiao Wang and Soravit Changpinyo and AJ Piergiovanni and Piotr Padlewski and Daniel Salz and Sebastian Goodman and Adam Grycner and Basil Mustafa and Lucas Beyer and Alexander Kolesnikov and Joan Puigcerver and Nan Ding and Keran Rong and Hassan Akbari and Gaurav Mishra and Linting Xue and Ashish Thapliyal and James Bradbury and Weicheng Kuo and Mojtaba Seyedhosseini and Chao Jia and Burcu Karagol Ayan and Carlos Riquelme and Andreas Steiner and Anelia Angelova and Xiaohua Zhai and Neil Houlsby and Radu Soricut},
+ title = {Pali: A jointly-scaled multilingual language-image model},
+ year = {2022}
+}
+
+@article{chen-2023-teaching,
+ abstract = {Large language models (LLMs) have achieved impressive performance on code
+generation. However, for complex programming tasks, generating the correct
+solution in one go becomes challenging, thus some prior works have designed
+program repair approaches to improve code generation performance. In this work,
+we propose Self-Debugging, which teaches a large language model to debug its
+predicted program via few-shot demonstrations. In particular, we demonstrate
+that Self-Debugging can teach the large language model to perform rubber duck
+debugging; i.e., without any human feedback on the code correctness or error
+messages, the model is able to identify its mistakes by investigating the
+execution results and explaining the generated code in natural language.
+Self-Debugging achieves the state-of-the-art performance on several code
+generation benchmarks, including the Spider dataset for text-to-SQL generation,
+TransCoder for C++-to-Python translation, and MBPP for text-to-Python
+generation. On the Spider benchmark where there are no unit tests to verify the
+correctness of predictions, Self-Debugging with code explanation consistently
+improves the baseline by 2-3%, and improves the prediction accuracy on problems
+of the hardest level by 9%. On TransCoder and MBPP where unit tests are
+available, Self-Debugging improves the baseline accuracy by up to 12%.
+Meanwhile, by leveraging feedback messages and reusing failed predictions,
+Self-Debugging notably improves sample efficiency, and can match or outperform
+baseline models that generate more than 10x candidate programs.},
+ arxiv_url = {https://arxiv.org/pdf/2304.05128v2.pdf},
+ author = {Xinyun Chen and Maxwell Lin and Nathanael Schärli and Denny Zhou},
+ title = {Teaching large language models to self-debug},
+ year = {2023}
+}
+
+@article{dai-2019-transformer,
+ abstract = {Transformers have a potential of learning longer-term dependency, but are
+limited by a fixed-length context in the setting of language modeling. We
+propose a novel neural architecture Transformer-XL that enables learning
+dependency beyond a fixed length without disrupting temporal coherence. It
+consists of a segment-level recurrence mechanism and a novel positional
+encoding scheme. Our method not only enables capturing longer-term dependency,
+but also resolves the context fragmentation problem. As a result,
+Transformer-XL learns dependency that is 80% longer than RNNs and 450% longer
+than vanilla Transformers, achieves better performance on both short and long
+sequences, and is up to 1,800+ times faster than vanilla Transformers during
+evaluation. Notably, we improve the state-of-the-art results of bpc/perplexity
+to 0.99 on enwiki8, 1.08 on text8, 18.3 on WikiText-103, 21.8 on One Billion
+Word, and 54.5 on Penn Treebank (without finetuning). When trained only on
+WikiText-103, Transformer-XL manages to generate reasonably coherent, novel
+text articles with thousands of tokens. Our code, pretrained models, and
+hyperparameters are available in both Tensorflow and PyTorch.},
+ arxiv_url = {https://arxiv.org/pdf/1901.02860v3.pdf},
+ author = {Zihang Dai and Zhilin Yang and Yiming Yang and Jaime Carbonell and Quoc V. Le and Ruslan Salakhutdinov},
+ title = {Transformer-xl: Attentive language models beyond a fixed-length context},
+ year = {2019}
+}
+
+@article{dao-2022-flashattention,
+ abstract = {Transformers are slow and memory-hungry on long sequences, since the time and
+memory complexity of self-attention are quadratic in sequence length.
+Approximate attention methods have attempted to address this problem by trading
+off model quality to reduce the compute complexity, but often do not achieve
+wall-clock speedup. We argue that a missing principle is making attention
+algorithms IO-aware -- accounting for reads and writes between levels of GPU
+memory. We propose FlashAttention, an IO-aware exact attention algorithm that
+uses tiling to reduce the number of memory reads/writes between GPU high
+bandwidth memory (HBM) and GPU on-chip SRAM. We analyze the IO complexity of
+FlashAttention, showing that it requires fewer HBM accesses than standard
+attention, and is optimal for a range of SRAM sizes. We also extend
+FlashAttention to block-sparse attention, yielding an approximate attention
+algorithm that is faster than any existing approximate attention method.
+FlashAttention trains Transformers faster than existing baselines: 15%
+end-to-end wall-clock speedup on BERT-large (seq. length 512) compared to the
+MLPerf 1.1 training speed record, 3$\times$ speedup on GPT-2 (seq. length 1K),
+and 2.4$\times$ speedup on long-range arena (seq. length 1K-4K). FlashAttention
+and block-sparse FlashAttention enable longer context in Transformers, yielding
+higher quality models (0.7 better perplexity on GPT-2 and 6.4 points of lift on
+long-document classification) and entirely new capabilities: the first
+Transformers to achieve better-than-chance performance on the Path-X challenge
+(seq. length 16K, 61.4% accuracy) and Path-256 (seq. length 64K, 63.1%
+accuracy).},
+ arxiv_url = {https://arxiv.org/pdf/2205.14135v2.pdf},
+ author = {Tri Dao and Daniel Y. Fu and Stefano Ermon and Atri Rudra and Christopher Ré},
+ title = {Flashattention: Fast and memory-efficient exact attention with io-awareness},
+ year = {2022}
+}
+
+@article{fedus-2021-switch,
+ abstract = {In deep learning, models typically reuse the same parameters for all inputs.
+Mixture of Experts (MoE) defies this and instead selects different parameters
+for each incoming example. The result is a sparsely-activated model -- with
+outrageous numbers of parameters -- but a constant computational cost. However,
+despite several notable successes of MoE, widespread adoption has been hindered
+by complexity, communication costs and training instability -- we address these
+with the Switch Transformer. We simplify the MoE routing algorithm and design
+intuitive improved models with reduced communication and computational costs.
+Our proposed training techniques help wrangle the instabilities and we show
+large sparse models may be trained, for the first time, with lower precision
+(bfloat16) formats. We design models based off T5-Base and T5-Large to obtain
+up to 7x increases in pre-training speed with the same computational resources.
+These improvements extend into multilingual settings where we measure gains
+over the mT5-Base version across all 101 languages. Finally, we advance the
+current scale of language models by pre-training up to trillion parameter
+models on the "Colossal Clean Crawled Corpus" and achieve a 4x speedup over the
+T5-XXL model.},
+ arxiv_url = {https://arxiv.org/pdf/2101.03961v3.pdf},
+ author = {William Fedus and Barret Zoph and Noam Shazeer},
+ title = {Switch transformers: Scaling to trillion parameter models with simple and efficient sparsity},
+ year = {2021}
+}
