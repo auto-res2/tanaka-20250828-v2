@@ -5,3 +5,700 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{alam-2023-recasting,
+ abstract = {In recent years, self-attention has become the dominant paradigm for sequence
+modeling in a variety of domains. However, in domains with very long sequence
+lengths the $\mathcal{O}(T^2)$ memory and $\mathcal{O}(T^2 H)$ compute costs
+can make using transformers infeasible. Motivated by problems in malware
+detection, where sequence lengths of $T \geq 100,000$ are a roadblock to deep
+learning, we re-cast self-attention using the neuro-symbolic approach of
+Holographic Reduced Representations (HRR). In doing so we perform the same
+high-level strategy of the standard self-attention: a set of queries matching
+against a set of keys, and returning a weighted response of the values for each
+key. Implemented as a ``Hrrformer'' we obtain several benefits including
+$\mathcal{O}(T H \log H)$ time complexity, $\mathcal{O}(T H)$ space complexity,
+and convergence in $10\times$ fewer epochs. Nevertheless, the Hrrformer
+achieves near state-of-the-art accuracy on LRA benchmarks and we are able to
+learn with just a single layer. Combined, these benefits make our Hrrformer the
+first viable Transformer for such long malware classification sequences and up
+to $280\times$ faster to train on the Long Range Arena benchmark. Code is
+available at
+\url{https://github.com/NeuromorphicComputationResearchProgram/Hrrformer}},
+ arxiv_url = {https://arxiv.org/pdf/2305.19534v1.pdf},
+ author = {Mohammad Mahmudul Alam and Edward Raff and Stella Biderman and Tim Oates and James Holt},
+ title = {Recasting Self-Attention with Holographic Reduced Representations},
+ year = {2023}
+}
+
+@article{andoorveedu-2022-tempo,
+ abstract = {Training deep learning models can be computationally expensive. Prior works
+have shown that increasing the batch size can potentially lead to better
+overall throughput. However, the batch size is frequently limited by the
+accelerator memory capacity due to the activations/feature maps stored for the
+training backward pass, as larger batch sizes require larger feature maps to be
+stored. Transformer-based models, which have recently seen a surge in
+popularity due to their good performance and applicability to a variety of
+tasks, have a similar problem. To remedy this issue, we propose Tempo, a new
+approach to efficiently use accelerator (e.g., GPU) memory resources for
+training Transformer-based models. Our approach provides drop-in replacements
+for the GELU, LayerNorm, and Attention layers, reducing the memory usage and
+ultimately leading to more efficient training. We implement Tempo and evaluate
+the throughput, memory usage, and accuracy/loss on the BERT Large pre-training
+task. We demonstrate that Tempo enables up to 2x higher batch sizes and 16%
+higher training throughput over the state-of-the-art baseline. We also evaluate
+Tempo on GPT2 and RoBERTa models, showing 19% and 26% speedup over the
+baseline.},
+ arxiv_url = {https://arxiv.org/pdf/2210.10246v2.pdf},
+ author = {Muralidhar Andoorveedu and Zhanda Zhu and Bojian Zheng and Gennady Pekhimenko},
+ github_url = {https://github.com/UofT-EcoSystem/Tempo},
+ title = {Tempo: Accelerating Transformer-Based Model Training through Memory Footprint Reduction},
+ year = {2022}
+}
+
+@article{author-year-learning,
+ title = {Learning to Jointly Share and Prune Weights for Grounding Based Vision and Language Models}
+}
+
+@article{author-year-shapeshifter,
+ title = {Shapeshifter: a Parameter-efficient Transformer using Factorized Reshaped Matrices}
+}
+
+@article{author-year-softmax,
+ title = {Softmax Output Approximation for Activation Memory-Efficient Training of Attention-based Networks}
+}
+
+@article{ding-2024-memoryformer,
+ abstract = {In order to reduce the computational complexity of large language models,
+great efforts have been made to to improve the efficiency of transformer models
+such as linear attention and flash-attention. However, the model size and
+corresponding computational complexity are constantly scaled up in pursuit of
+higher performance. In this work, we present MemoryFormer, a novel transformer
+architecture which significantly reduces the computational complexity (FLOPs)
+from a new perspective. We eliminate nearly all the computations of the
+transformer model except for the necessary computation required by the
+multi-head attention operation. This is made possible by utilizing an
+alternative method for feature transformation to replace the linear projection
+of fully-connected layers. Specifically, we first construct a group of
+in-memory lookup tables that store a large amount of discrete vectors to
+replace the weight matrix used in linear projection. We then use a hash
+algorithm to retrieve a correlated subset of vectors dynamically based on the
+input embedding. The retrieved vectors combined together will form the output
+embedding, which provides an estimation of the result of matrix multiplication
+operation in a fully-connected layer. Compared to conducting matrix
+multiplication, retrieving data blocks from memory is a much cheaper operation
+which requires little computations. We train MemoryFormer from scratch and
+conduct extensive experiments on various benchmarks to demonstrate the
+effectiveness of the proposed model.},
+ arxiv_url = {https://arxiv.org/pdf/2411.12992v1.pdf},
+ author = {Ning Ding and Yehui Tang and Haochen Qin and Zhenli Zhou and Chao Xu and Lin Li and Kai Han and Heng Liao and Yunhe Wang},
+ title = {MemoryFormer : Minimize Transformer Computation by Removing Fully-Connected Layers},
+ year = {2024}
+}
+
+@article{eschenhagen-2023-kronecker,
+ abstract = {The core components of many modern neural network architectures, such as
+transformers, convolutional, or graph neural networks, can be expressed as
+linear layers with $\textit{weight-sharing}$. Kronecker-Factored Approximate
+Curvature (K-FAC), a second-order optimisation method, has shown promise to
+speed up neural network training and thereby reduce computational costs.
+However, there is currently no framework to apply it to generic architectures,
+specifically ones with linear weight-sharing layers. In this work, we identify
+two different settings of linear weight-sharing layers which motivate two
+flavours of K-FAC -- $\textit{expand}$ and $\textit{reduce}$. We show that they
+are exact for deep linear networks with weight-sharing in their respective
+setting. Notably, K-FAC-reduce is generally faster than K-FAC-expand, which we
+leverage to speed up automatic hyperparameter selection via optimising the
+marginal likelihood for a Wide ResNet. Finally, we observe little difference
+between these two K-FAC variations when using them to train both a graph neural
+network and a vision transformer. However, both variations are able to reach a
+fixed validation metric target in $50$-$75\%$ of the number of steps of a
+first-order reference run, which translates into a comparable improvement in
+wall-clock time. This highlights the potential of applying K-FAC to modern
+neural network architectures.},
+ arxiv_url = {https://arxiv.org/pdf/2311.00636v2.pdf},
+ author = {Runa Eschenhagen and Alexander Immer and Richard E. Turner and Frank Schneider and Philipp Hennig},
+ github_url = {https://github.com/deepmind/kfac-jax},
+ title = {Kronecker-Factored Approximate Curvature for Modern Neural Network Architectures},
+ year = {2023}
+}
+
+@article{hay-2024-dynamic,
+ abstract = {In the pursuit of reducing the number of trainable parameters in deep
+transformer networks, we employ Reinforcement Learning to dynamically select
+layers during training and tie them together. Every few iterations, the RL
+agent is asked whether to train each layer $i$ independently or to copy the
+weights of a previous layer $j<i$. This facilitates weight sharing, reduces the
+number of trainable parameters, and also serves as an effective regularization
+technique. Experimental evaluations validate that our model modestly
+outperforms the baseline transformer model with regard to perplexity and
+drastically reduces the number of trainable parameters. In particular, the
+memory consumption during training is up to one order of magnitude less than
+the conventional training method.},
+ arxiv_url = {https://arxiv.org/pdf/2401.12819v1.pdf},
+ author = {Tamir David Hay and Lior Wolf},
+ title = {Dynamic Layer Tying for Parameter-Efficient Transformers},
+ year = {2024}
+}
+
+@article{kitaev-2020-reformer,
+ abstract = {Large Transformer models routinely achieve state-of-the-art results on a
+number of tasks but training these models can be prohibitively costly,
+especially on long sequences. We introduce two techniques to improve the
+efficiency of Transformers. For one, we replace dot-product attention by one
+that uses locality-sensitive hashing, changing its complexity from O($L^2$) to
+O($L\log L$), where $L$ is the length of the sequence. Furthermore, we use
+reversible residual layers instead of the standard residuals, which allows
+storing activations only once in the training process instead of $N$ times,
+where $N$ is the number of layers. The resulting model, the Reformer, performs
+on par with Transformer models while being much more memory-efficient and much
+faster on long sequences.},
+ arxiv_url = {https://arxiv.org/pdf/2001.04451v2.pdf},
+ author = {Nikita Kitaev and Łukasz Kaiser and Anselm Levskaya},
+ github_url = {https://github.com/google/trax},
+ title = {Reformer: The Efficient Transformer},
+ year = {2020}
+}
+
+@article{lee-2020-parameter,
+ abstract = {The recent success of Transformers in the language domain has motivated
+adapting it to a multimodal setting, where a new visual model is trained in
+tandem with an already pretrained language model. However, due to the excessive
+memory requirements from Transformers, existing work typically fixes the
+language model and train only the vision module, which limits its ability to
+learn cross-modal information in an end-to-end manner. In this work, we focus
+on reducing the parameters of multimodal Transformers in the context of
+audio-visual video representation learning. We alleviate the high memory
+requirement by sharing the parameters of Transformers across layers and
+modalities; we decompose the Transformer into modality-specific and
+modality-shared parts so that the model learns the dynamics of each modality
+both individually and together, and propose a novel parameter sharing scheme
+based on low-rank approximation. We show that our approach reduces parameters
+of the Transformers up to 97$\%$, allowing us to train our model end-to-end
+from scratch. We also propose a negative sampling approach based on an instance
+similarity measured on the CNN embedding space that our model learns together
+with the Transformers. To demonstrate our approach, we pretrain our model on
+30-second clips (480 frames) from Kinetics-700 and transfer it to audio-visual
+classification tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2012.04124v2.pdf},
+ author = {Sangho Lee and Youngjae Yu and Gunhee Kim and Thomas Breuel and Jan Kautz and Yale Song},
+ title = {Parameter Efficient Multimodal Transformers for Video Representation Learning},
+ year = {2020}
+}
+
+@article{lialin-2023-relora,
+ abstract = {Despite the dominance and effectiveness of scaling, resulting in large
+networks with hundreds of billions of parameters, the necessity to train
+overparameterized models remains poorly understood, while training costs grow
+exponentially. In this paper, we explore parameter-efficient training
+techniques as an approach to training large neural networks. We introduce a
+novel method called ReLoRA, which utilizes low-rank updates to train high-rank
+networks. We apply ReLoRA to training transformer language models with up to
+1.3B parameters and demonstrate comparable performance to regular neural
+network training. ReLoRA saves up to 5.5Gb of RAM per GPU and improves training
+speed by 9-40% depending on the model size and hardware setup. Our findings
+show the potential of parameter-efficient techniques for large-scale
+pre-training.},
+ arxiv_url = {https://arxiv.org/pdf/2307.05695v4.pdf},
+ author = {Vladislav Lialin and Namrata Shivagunde and Sherin Muckatira and Anna Rumshisky},
+ title = {ReLoRA: High-Rank Training Through Low-Rank Updates},
+ year = {2023}
+}
+
+@article{liao-2023-make,
+ abstract = {Parameter-efficient fine-tuning (PEFT) of pre-trained language models (PLMs)
+has emerged as a highly successful approach, with training only a small number
+of parameters without sacrificing performance and becoming the de-facto
+learning paradigm with the increasing size of PLMs. However, existing PEFT
+methods are not memory-efficient, because they still require caching most of
+the intermediate activations for the gradient calculation, akin to fine-tuning.
+One effective way to reduce the activation memory is to apply a reversible
+model, so the intermediate activations are not necessary to be cached and can
+be recomputed. Nevertheless, modifying a PLM to its reversible variant is not
+straightforward, since the reversible model has a distinct architecture from
+the currently released PLMs. In this paper, we first investigate what is a key
+factor for the success of existing PEFT methods, and realize that it's
+essential to preserve the PLM's starting point when initializing a PEFT method.
+With this finding, we propose memory-efficient fine-tuning (MEFT) that inserts
+adapters into a PLM, preserving the PLM's starting point and making it
+reversible without additional pre-training. We evaluate MEFT on the GLUE
+benchmark and five question-answering tasks with various backbones, BERT,
+RoBERTa, BART and OPT. MEFT significantly reduces the activation memory up to
+84% of full fine-tuning with a negligible amount of trainable parameters.
+Moreover, MEFT achieves the same score on GLUE and a comparable score on the
+question-answering tasks as full fine-tuning. A similar finding is also
+observed for the image classification task.},
+ arxiv_url = {https://arxiv.org/pdf/2306.00477v4.pdf},
+ author = {Baohao Liao and Shaomu Tan and Christof Monz},
+ github_url = {https://github.com/baohaoliao/mefts},
+ title = {Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning},
+ year = {2023}
+}
+
+@article{liu-2023-blockwise,
+ abstract = {Transformers have emerged as the cornerstone of state-of-the-art natural
+language processing models, showcasing exceptional performance across a wide
+range of AI applications. However, the memory demands posed by the
+self-attention mechanism and the large feedforward network in Transformers
+limit their ability to handle long sequences, thereby creating challenges for
+tasks involving multiple long sequences or long-term dependencies. We present a
+distinct approach, Blockwise Parallel Transformer (BPT), that leverages
+blockwise computation of self-attention and feedforward network fusion to
+minimize memory costs. By processing longer input sequences while maintaining
+memory efficiency, BPT enables training sequences 32 times longer than vanilla
+Transformers and up to 4 times longer than previous memory-efficient methods.
+Extensive experiments on language modeling and reinforcement learning tasks
+demonstrate the effectiveness of BPT in reducing memory requirements and
+improving performance.},
+ arxiv_url = {https://arxiv.org/pdf/2305.19370v3.pdf},
+ author = {Hao Liu and Pieter Abbeel},
+ github_url = {https://github.com/lhao499/llm_large_context},
+ title = {Blockwise Parallel Transformers for Large Context Models},
+ year = {2023}
+}
+
+@article{liu-2023-ringattention,
+ abstract = {Transformers have emerged as the architecture of choice for many
+state-of-the-art AI models, showcasing exceptional performance across a wide
+range of AI applications. However, the memory demands imposed by Transformers
+limit their ability to handle long sequences, thereby posing challenges in
+utilizing videos, actions, and other long-form sequences and modalities in
+complex environments. We present a novel approach, Ring Attention with
+Blockwise Transformers (Ring Attention), which leverages blockwise computation
+of self-attention and feedforward to distribute long sequences across multiple
+devices while fully overlapping the communication of key-value blocks with the
+computation of blockwise attention. Our approach enables training and inference
+of sequences that are up to device count times longer than those achievable by
+prior memory-efficient Transformers, without resorting to approximations or
+incurring additional communication and computation overheads. Extensive
+experiments on language modeling and reinforcement learning tasks demonstrate
+the effectiveness of our approach in allowing millions of tokens context size
+and improving performance.},
+ arxiv_url = {https://arxiv.org/pdf/2310.01889v4.pdf},
+ author = {Hao Liu and Matei Zaharia and Pieter Abbeel},
+ github_url = {https://github.com/lhao499/llm_large_context},
+ title = {RingAttention with Blockwise Transformers for Near-Infinite Context},
+ year = {2023}
+}
+
+@article{nguyen-2022-fourierformer,
+ abstract = {Multi-head attention empowers the recent success of transformers, the
+state-of-the-art models that have achieved remarkable success in sequence
+modeling and beyond. These attention mechanisms compute the pairwise dot
+products between the queries and keys, which results from the use of
+unnormalized Gaussian kernels with the assumption that the queries follow a
+mixture of Gaussian distribution. There is no guarantee that this assumption is
+valid in practice. In response, we first interpret attention in transformers as
+a nonparametric kernel regression. We then propose the FourierFormer, a new
+class of transformers in which the dot-product kernels are replaced by the
+novel generalized Fourier integral kernels. Different from the dot-product
+kernels, where we need to choose a good covariance matrix to capture the
+dependency of the features of data, the generalized Fourier integral kernels
+can automatically capture such dependency and remove the need to tune the
+covariance matrix. We theoretically prove that our proposed Fourier integral
+kernels can efficiently approximate any key and query distributions. Compared
+to the conventional transformers with dot-product attention, FourierFormers
+attain better accuracy and reduce the redundancy between attention heads. We
+empirically corroborate the advantages of FourierFormers over the baseline
+transformers in a variety of practical applications including language modeling
+and image classification.},
+ arxiv_url = {https://arxiv.org/pdf/2206.00206v1.pdf},
+ author = {Tan Nguyen and Minh Pham and Tam Nguyen and Khai Nguyen and Stanley J. Osher and Nhat Ho},
+ github_url = {https://github.com/facebookresearch/deit},
+ title = {FourierFormer: Transformer Meets Generalized Fourier Integral Theorem},
+ year = {2022}
+}
+
+@article{peng-2021-random,
+ abstract = {Transformers are state-of-the-art models for a variety of sequence modeling
+tasks. At their core is an attention function which models pairwise
+interactions between the inputs at every timestep. While attention is powerful,
+it does not scale efficiently to long sequences due to its quadratic time and
+space complexity in the sequence length. We propose RFA, a linear time and
+space attention that uses random feature methods to approximate the softmax
+function, and explore its application in transformers. RFA can be used as a
+drop-in replacement for conventional softmax attention and offers a
+straightforward way of learning with recency bias through an optional gating
+mechanism. Experiments on language modeling and machine translation demonstrate
+that RFA achieves similar or better performance compared to strong transformer
+baselines. In the machine translation experiment, RFA decodes twice as fast as
+a vanilla transformer. Compared to existing efficient transformer variants, RFA
+is competitive in terms of both accuracy and efficiency on three long text
+classification datasets. Our analysis shows that RFA's efficiency gains are
+especially notable on long sequences, suggesting that RFA will be particularly
+useful in tasks that require working with large inputs, fast decoding speed, or
+low memory footprints.},
+ arxiv_url = {https://arxiv.org/pdf/2103.02143v2.pdf},
+ author = {Hao Peng and Nikolaos Pappas and Dani Yogatama and Roy Schwartz and Noah A. Smith and Lingpeng Kong},
+ github_url = {https://github.com/google-research/long-range-arena},
+ title = {Random Feature Attention},
+ year = {2021}
+}
+
+@article{sehanobish-2024-structured,
+ abstract = {Recent efforts to scale Transformer models have demonstrated rapid progress
+across a wide range of tasks (Wei et al., 2022). However, fine-tuning these
+models for downstream tasks is expensive due to their large parameter counts.
+Parameter-efficient fine-tuning (PEFT) approaches have emerged as a viable
+alternative by allowing us to fine-tune models by updating only a small number
+of parameters. In this work, we propose a general framework for parameter
+efficient fine-tuning (PEFT), based on structured unrestricted-rank matrices
+(SURM) which can serve as a drop-in replacement for popular approaches such as
+Adapters and LoRA. Unlike other methods like LoRA, SURMs provides more
+flexibility in finding the right balance between compactness and
+expressiveness. This is achieved by using low displacement rank matrices
+(LDRMs), which hasn't been used in this context before. SURMs remain
+competitive with baselines, often providing significant quality improvements
+while using a smaller parameter budget. SURMs achieve 5-7% accuracy gains on
+various image classification tasks while replacing low-rank matrices in LoRA.
+It also results in up to 12x reduction of the number of parameters in adapters
+(with virtually no loss in quality) on the GLUE benchmark.},
+ arxiv_url = {https://arxiv.org/pdf/2406.17740v3.pdf},
+ author = {Arijit Sehanobish and Avinava Dubey and Krzysztof Choromanski and Somnath Basu Roy Chowdhury and Deepali Jain and Vikas Sindhwani and Snigdha Chaturvedi},
+ title = {Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning},
+ year = {2024}
+}
+
+@article{trockman-2023-mimetic,
+ abstract = {It is notoriously difficult to train Transformers on small datasets;
+typically, large pre-trained models are instead used as the starting point. We
+explore the weights of such pre-trained Transformers (particularly for vision)
+to attempt to find reasons for this discrepancy. Surprisingly, we find that
+simply initializing the weights of self-attention layers so that they "look"
+more like their pre-trained counterparts allows us to train vanilla
+Transformers faster and to higher final accuracies, particularly on vision
+tasks such as CIFAR-10 and ImageNet classification, where we see gains in
+accuracy of over 5% and 4%, respectively. Our initialization scheme is closed
+form, learning-free, and very simple: we set the product of the query and key
+weights to be approximately the identity, and the product of the value and
+projection weights to approximately the negative identity. As this mimics the
+patterns we saw in pre-trained Transformers, we call the technique "mimetic
+initialization".},
+ arxiv_url = {https://arxiv.org/pdf/2305.09828v1.pdf},
+ author = {Asher Trockman and J. Zico Kolter},
+ title = {Mimetic Initialization of Self-Attention Layers},
+ year = {2023}
+}
+
+@article{yang-2024-reducing,
+ abstract = {Fine-tuning pretrained large models to downstream tasks is an important
+problem, which however suffers from huge memory overhead due to large-scale
+parameters. This work strives to reduce memory overhead in fine-tuning from
+perspectives of activation function and layer normalization. To this end, we
+propose the Approximate Backpropagation (Approx-BP) theory, which provides the
+theoretical feasibility of decoupling the forward and backward passes. We apply
+our Approx-BP theory to backpropagation training and derive memory-efficient
+alternatives of GELU and SiLU activation functions, which use derivative
+functions of ReLUs in the backward pass while keeping their forward pass
+unchanged. In addition, we introduce a Memory-Sharing Backpropagation strategy,
+which enables the activation memory to be shared by two adjacent layers,
+thereby removing activation memory usage redundancy. Our method neither induces
+extra computation nor reduces training efficiency. We conduct extensive
+experiments with pretrained vision and language models, and the results
+demonstrate that our proposal can reduce up to $\sim$$30\%$ of the peak memory
+usage. Our code is released at https://github.com/yyyyychen/LowMemoryBP.},
+ arxiv_url = {https://arxiv.org/pdf/2406.16282v1.pdf},
+ author = {Yuchen Yang and Yingdong Shi and Cheems Wang and Xiantong Zhen and Yuxuan Shi and Jun Xu},
+ title = {Reducing Fine-Tuning Memory Overhead by Approximate and Memory-Sharing Backpropagation},
+ year = {2024}
+}
+
+@article{zandieh-2023-kdeformer,
+ abstract = {Dot-product attention mechanism plays a crucial role in modern deep
+architectures (e.g., Transformer) for sequence modeling, however, na\"ive exact
+computation of this model incurs quadratic time and memory complexities in
+sequence length, hindering the training of long-sequence models. Critical
+bottlenecks are due to the computation of partition functions in the
+denominator of softmax function as well as the multiplication of the softmax
+matrix with the matrix of values. Our key observation is that the former can be
+reduced to a variant of the kernel density estimation (KDE) problem, and an
+efficient KDE solver can be further utilized to accelerate the latter via
+subsampling-based fast matrix products. Our proposed KDEformer can approximate
+the attention in sub-quadratic time with provable spectral norm bounds, while
+all prior results merely provide entry-wise error bounds. Empirically, we
+verify that KDEformer outperforms other attention approximations in terms of
+accuracy, memory, and runtime on various pre-trained models. On BigGAN image
+generation, we achieve better generative scores than the exact computation with
+over $4\times$ speedup. For ImageNet classification with T2T-ViT, KDEformer
+shows over $18\times$ speedup while the accuracy drop is less than $0.5\%$.},
+ arxiv_url = {https://arxiv.org/pdf/2302.02451v2.pdf},
+ author = {Amir Zandieh and Insu Han and Majid Daliri and Amin Karbasi},
+ title = {KDEformer: Accelerating Transformers via Kernel Density Estimation},
+ year = {2023}
+}
+
+@article{zhao-2024-apt,
+ abstract = {Fine-tuning and inference with large Language Models (LM) are generally known
+to be expensive. Parameter-efficient fine-tuning over pretrained LMs reduces
+training memory by updating a small number of LM parameters but does not
+improve inference efficiency. Structured pruning improves LM inference
+efficiency by removing consistent parameter blocks, yet often increases
+training memory and time. To improve both training and inference efficiency, we
+introduce APT that adaptively prunes and tunes parameters for the LMs. At the
+early stage of fine-tuning, APT dynamically adds salient tuning parameters for
+fast and accurate convergence while discarding unimportant parameters for
+efficiency. Compared to baselines, our experiments show that APT maintains up
+to 98% task performance when pruning RoBERTa and T5 models with 40% parameters
+left while keeping 86.4% LLaMA models' performance with 70% parameters
+remained. Furthermore, APT speeds up LMs fine-tuning by up to 8x and reduces
+large LMs memory training footprint by up to 70%.},
+ arxiv_url = {https://arxiv.org/pdf/2401.12200v2.pdf},
+ author = {Bowen Zhao and Hannaneh Hajishirzi and Qingqing Cao},
+ github_url = {https://github.com/ROIM1998/APT},
+ title = {APT: Adaptive Pruning and Tuning Pretrained Language Models for Efficient Training and Inference},
+ year = {2024}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{devlin-2018-bert,
+ abstract = {We introduce a new language representation model called BERT, which stands
+for Bidirectional Encoder Representations from Transformers. Unlike recent
+language representation models, BERT is designed to pre-train deep
+bidirectional representations from unlabeled text by jointly conditioning on
+both left and right context in all layers. As a result, the pre-trained BERT
+model can be fine-tuned with just one additional output layer to create
+state-of-the-art models for a wide range of tasks, such as question answering
+and language inference, without substantial task-specific architecture
+modifications.
+  BERT is conceptually simple and empirically powerful. It obtains new
+state-of-the-art results on eleven natural language processing tasks, including
+pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI
+accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering
+Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1
+(5.1 point absolute improvement).},
+ arxiv_url = {https://arxiv.org/pdf/1810.04805v2.pdf},
+ author = {Jacob Devlin and Ming-Wei Chang and Kenton Lee and Kristina Toutanova},
+ title = {BERT: pre-training of deep bidirectional transformers for language understanding},
+ year = {2018}
+}
+
+@article{he-2021-masked,
+ abstract = {This paper shows that masked autoencoders (MAE) are scalable self-supervised
+learners for computer vision. Our MAE approach is simple: we mask random
+patches of the input image and reconstruct the missing pixels. It is based on
+two core designs. First, we develop an asymmetric encoder-decoder architecture,
+with an encoder that operates only on the visible subset of patches (without
+mask tokens), along with a lightweight decoder that reconstructs the original
+image from the latent representation and mask tokens. Second, we find that
+masking a high proportion of the input image, e.g., 75%, yields a nontrivial
+and meaningful self-supervisory task. Coupling these two designs enables us to
+train large models efficiently and effectively: we accelerate training (by 3x
+or more) and improve accuracy. Our scalable approach allows for learning
+high-capacity models that generalize well: e.g., a vanilla ViT-Huge model
+achieves the best accuracy (87.8%) among methods that use only ImageNet-1K
+data. Transfer performance in downstream tasks outperforms supervised
+pre-training and shows promising scaling behavior.},
+ arxiv_url = {https://arxiv.org/pdf/2111.06377v3.pdf},
+ author = {Kaiming He and Xinlei Chen and Saining Xie and Yanghao Li and Piotr Dollár and Ross Girshick},
+ title = {Masked autoencoders are scalable vision learners},
+ year = {2021}
+}
+
+@article{he-2021-towards,
+ abstract = {Fine-tuning large pre-trained language models on downstream tasks has become
+the de-facto learning paradigm in NLP. However, conventional approaches
+fine-tune all the parameters of the pre-trained model, which becomes
+prohibitive as the model size and the number of tasks grow. Recent work has
+proposed a variety of parameter-efficient transfer learning methods that only
+fine-tune a small number of (extra) parameters to attain strong performance.
+While effective, the critical ingredients for success and the connections among
+the various methods are poorly understood. In this paper, we break down the
+design of state-of-the-art parameter-efficient transfer learning methods and
+present a unified framework that establishes connections between them.
+Specifically, we re-frame them as modifications to specific hidden states in
+pre-trained models, and define a set of design dimensions along which different
+methods vary, such as the function to compute the modification and the position
+to apply the modification. Through comprehensive empirical studies across
+machine translation, text summarization, language understanding, and text
+classification benchmarks, we utilize the unified view to identify important
+design choices in previous methods. Furthermore, our unified framework enables
+the transfer of design elements across different approaches, and as a result we
+are able to instantiate new parameter-efficient fine-tuning methods that tune
+less parameters than previous methods while being more effective, achieving
+comparable results to fine-tuning all parameters on all four tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2110.04366v3.pdf},
+ author = {Junxian He and Chunting Zhou and Xuezhe Ma and Taylor Berg-Kirkpatrick and Graham Neubig},
+ title = {Towards a unified view of parameter-efficient transfer learning},
+ year = {2021}
+}
+
+@article{li-2021-prefix,
+ abstract = {Fine-tuning is the de facto way to leverage large pretrained language models
+to perform downstream tasks. However, it modifies all the language model
+parameters and therefore necessitates storing a full copy for each task. In
+this paper, we propose prefix-tuning, a lightweight alternative to fine-tuning
+for natural language generation tasks, which keeps language model parameters
+frozen, but optimizes a small continuous task-specific vector (called the
+prefix). Prefix-tuning draws inspiration from prompting, allowing subsequent
+tokens to attend to this prefix as if it were "virtual tokens". We apply
+prefix-tuning to GPT-2 for table-to-text generation and to BART for
+summarization. We find that by learning only 0.1\% of the parameters,
+prefix-tuning obtains comparable performance in the full data setting,
+outperforms fine-tuning in low-data settings, and extrapolates better to
+examples with topics unseen during training.},
+ arxiv_url = {https://arxiv.org/pdf/2101.00190v1.pdf},
+ author = {Xiang Lisa Li and Percy Liang},
+ title = {Prefix-tuning: Optimizing continuous prompts for generation},
+ year = {2021}
+}
+
+@article{liu-2019-roberta,
+ abstract = {Language model pretraining has led to significant performance gains but
+careful comparison between different approaches is challenging. Training is
+computationally expensive, often done on private datasets of different sizes,
+and, as we will show, hyperparameter choices have significant impact on the
+final results. We present a replication study of BERT pretraining (Devlin et
+al., 2019) that carefully measures the impact of many key hyperparameters and
+training data size. We find that BERT was significantly undertrained, and can
+match or exceed the performance of every model published after it. Our best
+model achieves state-of-the-art results on GLUE, RACE and SQuAD. These results
+highlight the importance of previously overlooked design choices, and raise
+questions about the source of recently reported improvements. We release our
+models and code.},
+ arxiv_url = {https://arxiv.org/pdf/1907.11692v1.pdf},
+ author = {Yinhan Liu and Myle Ott and Naman Goyal and Jingfei Du and Mandar Joshi and Danqi Chen and Omer Levy and Mike Lewis and Luke Zettlemoyer and Veselin Stoyanov},
+ title = {Roberta: A robustly optimized BERT pretraining approach},
+ year = {2019}
+}
+
+@article{lu-2019-vilbert,
+ abstract = {We present ViLBERT (short for Vision-and-Language BERT), a model for learning
+task-agnostic joint representations of image content and natural language. We
+extend the popular BERT architecture to a multi-modal two-stream model,
+pro-cessing both visual and textual inputs in separate streams that interact
+through co-attentional transformer layers. We pretrain our model through two
+proxy tasks on the large, automatically collected Conceptual Captions dataset
+and then transfer it to multiple established vision-and-language tasks --
+visual question answering, visual commonsense reasoning, referring expressions,
+and caption-based image retrieval -- by making only minor additions to the base
+architecture. We observe significant improvements across tasks compared to
+existing task-specific models -- achieving state-of-the-art on all four tasks.
+Our work represents a shift away from learning groundings between vision and
+language only as part of task training and towards treating visual grounding as
+a pretrainable and transferable capability.},
+ arxiv_url = {https://arxiv.org/pdf/1908.02265v1.pdf},
+ author = {Jiasen Lu and Dhruv Batra and Devi Parikh and Stefan Lee},
+ title = {Vilbert: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks},
+ year = {2019}
+}
+
+@article{raffel-2019-exploring,
+ abstract = {Transfer learning, where a model is first pre-trained on a data-rich task
+before being fine-tuned on a downstream task, has emerged as a powerful
+technique in natural language processing (NLP). The effectiveness of transfer
+learning has given rise to a diversity of approaches, methodology, and
+practice. In this paper, we explore the landscape of transfer learning
+techniques for NLP by introducing a unified framework that converts all
+text-based language problems into a text-to-text format. Our systematic study
+compares pre-training objectives, architectures, unlabeled data sets, transfer
+approaches, and other factors on dozens of language understanding tasks. By
+combining the insights from our exploration with scale and our new ``Colossal
+Clean Crawled Corpus'', we achieve state-of-the-art results on many benchmarks
+covering summarization, question answering, text classification, and more. To
+facilitate future work on transfer learning for NLP, we release our data set,
+pre-trained models, and code.},
+ arxiv_url = {https://arxiv.org/pdf/1910.10683v4.pdf},
+ author = {Colin Raffel and Noam Shazeer and Adam Roberts and Katherine Lee and Sharan Narang and Michael Matena and Yanqi Zhou and Wei Li and Peter J. Liu},
+ title = {Exploring the limits of transfer learning with a unified text-to-text transformer},
+ year = {2019}
+}
+
+@article{tay-2022-unifying,
+ abstract = {Existing pre-trained models are generally geared towards a particular class
+of problems. To date, there seems to be still no consensus on what the right
+architecture and pre-training setup should be. This paper presents a unified
+framework for pre-training models that are universally effective across
+datasets and setups. We begin by disentangling architectural archetypes with
+pre-training objectives -- two concepts that are commonly conflated. Next, we
+present a generalized & unified perspective for self-supervision in NLP and
+show how different pre-training objectives can be cast as one another and how
+interpolating between different objectives can be effective. We then propose
+Mixture-of-Denoisers (MoD), a pre-training objective that combines diverse
+pre-training paradigms together. We furthermore introduce a notion of mode
+switching, wherein downstream fine-tuning is associated with specific
+pre-training schemes. We conduct extensive ablative experiments to compare
+multiple pre-training objectives and find that our method pushes the
+Pareto-frontier by outperforming T5 & GPT-like models across multiple diverse
+setups. By scaling our model up to 20B parameters, we achieve SOTA performance
+on 50 well-established supervised finetuning based NLP tasks. Our model also
+achieve strong results at in-context learning, outperforming 175B GPT-3 on
+zero-shot SuperGLUE and tripling the performance of T5-XXL on one-shot
+summarization. On 0-shot MMLU, UL2 20B outperforms T0 and T5 models. UL2 20B
+also works well with chain-of-thought prompting and reasoning, making it an
+appealing choice for research into reasoning at a small to medium scale of 20B
+parameters. Finally, we apply FLAN instruction tuning to the UL2 20B model,
+achieving MMLU and Big-Bench scores competitive to FLAN-PaLM 62B. We release
+Flax-based T5X checkpoints for the UL2 20B & Flan-UL2 20B.},
+ arxiv_url = {https://arxiv.org/pdf/2205.05131v3.pdf},
+ author = {Yi Tay and Mostafa Dehghani and Vinh Q. Tran and Xavier Garcia and Jason Wei and Xuezhi Wang and Hyung Won Chung and Siamak Shakeri and Dara Bahri and Tal Schuster and Huaixiu Steven Zheng and Denny Zhou and Neil Houlsby and Donald Metzler},
+ title = {Unifying language learning paradigms},
+ year = {2022}
+}
+
+@article{touvron-2023-llama,
+ abstract = {We introduce LLaMA, a collection of foundation language models ranging from
+7B to 65B parameters. We train our models on trillions of tokens, and show that
+it is possible to train state-of-the-art models using publicly available
+datasets exclusively, without resorting to proprietary and inaccessible
+datasets. In particular, LLaMA-13B outperforms GPT-3 (175B) on most benchmarks,
+and LLaMA-65B is competitive with the best models, Chinchilla-70B and
+PaLM-540B. We release all our models to the research community.},
+ arxiv_url = {https://arxiv.org/pdf/2302.13971v1.pdf},
+ author = {Hugo Touvron and Thibaut Lavril and Gautier Izacard and Xavier Martinet and Marie-Anne Lachaux and Timothée Lacroix and Baptiste Rozière and Naman Goyal and Eric Hambro and Faisal Azhar and Aurelien Rodriguez and Armand Joulin and Edouard Grave and Guillaume Lample},
+ title = {Llama: Open and efficient foundation language models},
+ year = {2023}
+}
+
+@article{xie-2021-simmim,
+ abstract = {This paper presents SimMIM, a simple framework for masked image modeling. We
+simplify recently proposed related approaches without special designs such as
+block-wise masking and tokenization via discrete VAE or clustering. To study
+what let the masked image modeling task learn good representations, we
+systematically study the major components in our framework, and find that
+simple designs of each component have revealed very strong representation
+learning performance: 1) random masking of the input image with a moderately
+large masked patch size (e.g., 32) makes a strong pre-text task; 2) predicting
+raw pixels of RGB values by direct regression performs no worse than the patch
+classification approaches with complex designs; 3) the prediction head can be
+as light as a linear layer, with no worse performance than heavier ones. Using
+ViT-B, our approach achieves 83.8% top-1 fine-tuning accuracy on ImageNet-1K by
+pre-training also on this dataset, surpassing previous best approach by +0.6%.
+When applied on a larger model of about 650 million parameters, SwinV2-H, it
+achieves 87.1% top-1 accuracy on ImageNet-1K using only ImageNet-1K data. We
+also leverage this approach to facilitate the training of a 3B model
+(SwinV2-G), that by $40\times$ less data than that in previous practice, we
+achieve the state-of-the-art on four representative vision benchmarks. The code
+and models will be publicly available at https://github.com/microsoft/SimMIM.},
+ arxiv_url = {https://arxiv.org/pdf/2111.09886v2.pdf},
+ author = {Zhenda Xie and Zheng Zhang and Yue Cao and Yutong Lin and Jianmin Bao and Zhuliang Yao and Qi Dai and Han Hu},
+ title = {Simmim: a simple framework for masked image modeling},
+ year = {2021}
+}
+
+@article{zhang-2022-opt,
+ abstract = {Large language models, which are often trained for hundreds of thousands of
+compute days, have shown remarkable capabilities for zero- and few-shot
+learning. Given their computational cost, these models are difficult to
+replicate without significant capital. For the few that are available through
+APIs, no access is granted to the full model weights, making them difficult to
+study. We present Open Pre-trained Transformers (OPT), a suite of decoder-only
+pre-trained transformers ranging from 125M to 175B parameters, which we aim to
+fully and responsibly share with interested researchers. We show that OPT-175B
+is comparable to GPT-3, while requiring only 1/7th the carbon footprint to
+develop. We are also releasing our logbook detailing the infrastructure
+challenges we faced, along with code for experimenting with all of the released
+models.},
+ arxiv_url = {https://arxiv.org/pdf/2205.01068v4.pdf},
+ author = {Susan Zhang and Stephen Roller and Naman Goyal and Mikel Artetxe and Moya Chen and Shuohui Chen and Christopher Dewan and Mona Diab and Xian Li and Xi Victoria Lin and Todor Mihaylov and Myle Ott and Sam Shleifer and Kurt Shuster and Daniel Simig and Punit Singh Koura and Anjali Sridhar and Tianlu Wang and Luke Zettlemoyer},
+ title = {OPT: open pre-trained transformer language models},
+ year = {2022}
+}
