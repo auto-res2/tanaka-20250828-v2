@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/tanaka-20250828-v2/tanaka-20250828-v2/src/main.py", line 24, in <module>
+    from .train import TrainConfig, run_training, build_model
+  File "/home/runner/work/tanaka-20250828-v2/tanaka-20250828-v2/src/train.py", line 32, in <module>
+    from .preprocess import make_datasets
+  File "/home/runner/work/tanaka-20250828-v2/tanaka-20250828-v2/src/preprocess.py", line 26, in <module>
+    from .train import TrainConfig  # for type hints only
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ImportError: cannot import name 'TrainConfig' from partially initialized module 'src.train' (most likely due to a circular import) (/home/runner/work/tanaka-20250828-v2/tanaka-20250828-v2/src/train.py)
