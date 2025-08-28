@@ -1,0 +1,6 @@
+run:
+  quick_test: true
+  experiment1_toy: false
+  experiment2_toy: false
+  experiment3_toy: false
+seed: 0
