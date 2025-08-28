@@ -624,6 +624,68 @@
       "title": "Outlier-aware Slicing for Post-Training Quantization in Vision Transformer"
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Language models are few-shot learners"
+    },
+    {
+      "title": "Gpt-4 technical report"
+    },
+    {
+      "title": "Training language models to follow instructions with human feedback"
+    },
+    {
+      "title": "Llama: Open and efficient foundation language models"
+    },
+    {
+      "title": "Llama 2: Open foundation and fine-tuned chat models"
+    },
+    {
+      "title": "Introducing meta llama 3: The most capable openly available llm to date."
+    },
+    {
+      "title": "Scaling laws for neural language models"
+    },
+    {
+      "title": "Gemini: a family of highly capable multimodal models"
+    },
+    {
+      "title": "Efficiently scaling transformer inference"
+    },
+    {
+      "title": "Training verifiers to solve math word problems"
+    },
+    {
+      "title": "Kivi: Plug- and-play 2bit kv cache quantization with streaming asymmetric quantization"
+    },
+    {
+      "title": "Gear: An efficient kv cache compression recipefor near-lossless generative inference of llm"
+    },
+    {
+      "title": "Flexgen: High-throughput generative inference of large language models with a single gpu"
+    },
+    {
+      "title": "H2o: Heavy-hitter oracle for efficient generative inference of large language models"
+    },
+    {
+      "title": "Efficient streaming language models with attention sinks"
+    },
+    {
+      "title": "Model tells you what to discard: Adaptive kv cache compression for llms"
+    },
+    {
+      "title": "Mixture-of- depths: Dynamically allocating compute in transformer-based language models"
+    },
+    {
+      "title": "Bert loses patience: Fast and robust inference with early exit"
+    },
+    {
+      "title": "Layer skip: Enabling early exit inference and self-speculative decoding"
+    },
+    {
+      "title": "The unreasonable ineffectiveness of the deeper layers"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Most existing inference-acceleration techniques for language models fall into two categories: (1) speculative decoding that needs an additional, usually larger, verifier model (BiLD, SpecExec) and (2) architectural changes that assume the whole layer stack is always executed (MiniCache, MInference, IceFormer).  For small language models (≤1 B parameters) that have to run on edge GPUs/CPUs or mobile NPUs, keeping a second model in memory is infeasible, while always executing the full depth wastes compute when the model is already confident.  Unlike classification, token-wise early-exit in autoregressive generation has not been solved because an error made at a shallow exit propagates to all future tokens.  The open problem is therefore:  How can we design a single-model, memory-neutral architecture that decides on-the-fly how many layers a token really needs, while guaranteeing that low-confidence drafts can still be corrected later, thus providing large, quality-preserving speed-ups for small LMs?\nMethods: We propose HEAT (Hierarchical Early-exit Autoregressive Transformer): 1. Layer Grouping – split the L-layer decoder into G groups (e.g., 2–4 layers each). After every group g we attach:   a. Draft Head H_g that maps hidden state h_g to vocabulary logits.   b. Confidence Estimator C_g (single linear + sigmoid) that outputs p_g, an upper-bound estimate of the probability that the argmax token will not change if deeper groups are applied.\n2. Multi-Exit Training – train all H_g jointly with the final head using hierarchical distillation: the cross-entropy loss at exit g is weighted by β_g and the teacher is the final head soft targets; C_g is trained with a binary label indicating whether exiting at g would equal the final token.  A KL-temperature schedule encourages earlier exits to mimic deeper ones.\n3. Inference Algorithm  (per time step t):   • Run groups sequentially.   • After group g, compute p_g. If p_g ≥ τ (adaptive threshold) stop, emit logits of H_g, store KV up to depth g.   • If no group passes τ, fall back to full depth.   • Maintain a rolling window W of the past k tokens. Whenever the current token requires running deeper than its predecessor’s depth, we also re-forward the tokens in W that exited shallower than the current depth, using the saved hidden states.  This \"selective replay\" serves as a cheap rollback mechanism that corrects earlier over-confident drafts without recomputing all tokens.\n4. Complexity – worst-case equals original model; expected cost ≈ Σ_g q_g·d_g where q_g is exit probability and d_g group depth. Overhead of heads/estimators <1 % parameters, no second model.\n5. Engineering  – implemented in one Transformer code-base, no KV-layout change; confidence check adds O(1) ops; replay reuses existing KV buffers. Optional: quantize confidence heads to INT8 for free.\nExperimental Setup: Models:  • MobileLLM-350 M (dense),   • DistilGPT-2-117 M,   • Phi-3-Mini-4k-128 M.  Baselines: original model, BiLD (with a 5× larger verifier), CALM-LM (early-exit without replay), and SpecExec (where memory allows).\nTasks: 1. Language modeling: WikiText-103, C4-200k – measure perplexity. 2. Summarization: CNN/DM, XSum – ROUGE-L. 3. Dialogue: AlpacaEval – win-rate vs GPT-4. 4. Long-context (8 k) QA: LongBench subset – Exact-Match.\nHardware:  Laptop RTX-4090 GPU, Raspberry-Pi-CM4 CPU, and iPhone-13 NPU via CoreML.\nMetrics:  • Tokens/s and wall-clock latency for single-sample decoding;  • mean exit depth per token;  • quality metrics above;  • rollback rate (percentage of tokens replayed);  • Energy (NVIDIA-SM and iOS power profiler).\nAblations: threshold τ sweep, window size k, grouping granularity, and replay-on/off.  Robustness: noisy-prompt test (add random 10 % token noise) and out-of-domain dataset (BookCorpus) to verify graceful degradation.\nResult: We expect:  • Average exit after 50-60 % of layers, giving 1.8-2.4 × speed-up on GPU and 2.2-3.0 × on CPU/NPU.  • Quality drop <0.5 perplexity points on WikiText-103 and <0.2 ROUGE-L on CNN/DM; on dialogue tasks win-rate within 1 %.  • Rollback triggers on <8 % of tokens, limiting extra compute to <5 %.  • Compared to BiLD, HEAT uses 55 % less memory and is faster on devices where verifier cannot fit.  • Versus CALM-LM, similar or higher speed-up but with 40 % lower error rate thanks to replay.  • Energy per generated token drops by ≈35 % on mobile.\nAblations should show monotonic latency-quality trade-off across τ; optimal grouping size 3-layers.\nConclusion: HEAT introduces the first single-model, confidence-driven early-exit mechanism for autoregressive generation that is safeguarded by a lightweight selective-replay correction, delivering large, memory-free decoding speed-ups crucial for on-device small LMs.  The idea bridges gaps between early-exit classification and speculative decoding, opening a new axis (depth adaptivity) orthogonal to quantization, sparse attention, or cache compression.  Practically, it enables real-time chatbots and summarizers on edge hardware without sacrificing accuracy.  Future work can combine HEAT with quantized kernels or linear-time attention, explore token-adaptive head pruning, and extend the replay principle to beam search or multilingual settings.",
     "experimental_design": {
