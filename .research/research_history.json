@@ -587,6 +587,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Flamingo: a visual language model for few-shot learning"
+    },
+    {
+      "title": "GitHub - karpathy/nanoGPT: The simplest, fastest repository for train- ing/finetuning medium-sized GPTs. — github.com"
+    },
+    {
+      "title": "Lambdanetworks: Modeling long-range interactions without attention"
+    },
+    {
+      "title": "Longformer: The long-document transformer"
+    },
+    {
+      "title": "Language models are few-shot learners"
+    },
+    {
+      "title": "Decision transformer: Reinforcement learning via sequence modeling"
+    },
+    {
+      "title": "Evaluating large language models trained on code"
+    },
+    {
+      "title": "Training deep nets with sublinear memory cost"
+    },
+    {
+      "title": "Pali: A jointly-scaled multilingual language-image model"
+    },
+    {
+      "title": "Teaching large language models to self-debug"
+    },
+    {
+      "title": "Generating long sequences with sparse transformers"
+    },
+    {
+      "title": "Rethinking attention with performers"
+    },
+    {
+      "title": "Transformer-xl: Attentive language models beyond a fixed-length context"
+    },
+    {
+      "title": "Flashattention: Fast and memory-efficient exact attention with io-awareness"
+    },
+    {
+      "title": "Bert: Pre-training of deep bidirectional transformers for language understanding"
+    },
+    {
+      "title": "Fully Sharded Data Parallel: faster AI training with fewer GPUs — engineer- ing.fb.com"
+    },
+    {
+      "title": "Switch transformers: Scaling to trillion parameter models with simple and efficient sparsity"
+    },
+    {
+      "title": "Openwebtext corpus"
+    },
+    {
+      "title": "Hippo: Recurrent memory with optimal polynomial projections"
+    },
+    {
+      "title": "Efficiently modeling long sequences with structured state spaces"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: On-device or low-VRAM fine-tuning of sub-billion-parameter language models (e.g. 100 M–700 M) is still impractical on 4-8 GB GPUs/NPUs.  Existing methods each tackle a single memory component – activation replay (reversible nets, checkpointing), activation storage (VeLoRA, rank-k projection), gradient storage (Few-Bit Backward, MS-BP), or optimizer state (8-bit, Any-Precision).  When naively combined they collide (e.g. reversible blocks need full-precision checkpoints; activation projection breaks LayerNorm statistics) and no planner decides which compression to apply per layer under a strict memory budget.  A unified, budget-aware training recipe that co-optimises all memory sources while preserving accuracy for small LMs is missing.\nMethods: We propose Unified Compressed Training (UCT).  Core ideas:\n1. Layer-wise Hybrid Compression Library (HCL)\n   • Every Transformer block exposes three pluggable variants:  (A) reversible computation (no activations, extra compute),  (B) VeLoRA-style rank-1 sub-token projection (1-D stored activations),  (C) normal store.  \n   • Point-wise activations inside each variant use Few-Bit Backward (3-bit derivative tables).\n   • Optimizer states are kept in Any-Precision 8→4→2-bit format with incremental up-scaling if training diverges.\n2. Budget-Aware Planner (BAP)\n   • Static analysis of the computation graph (cheap PyTorch trace) estimates per-layer memory/compute for each variant with analytical formulas (no ILP).  \n   • A greedy knapsack algorithm selects the cheapest set of variants that fits a user-specified VRAM budget B, prioritising bottom layers for projection (sensitive to semantics) and top layers for reversibility (larger activations).\n   • Planner outputs a per-layer policy ⟨variant, bit-width⟩ written into the model before training starts.\n3. Runtime Engine\n   • Custom Autograd Functions implement reversible + projected activations together, so a layer can switch between them with one flag.\n   • A tiny controller monitors actual peak memory; if it exceeds B the controller live-switches the worst-case layer from projection to reversible, guaranteeing no OOM.\n4. API:  model = uct.wrap(model, budget=4*GB, rank=1, bits=3)  – drop-in for HuggingFace models.\nExperimental Setup: Models:  (i) MobileLLM-350 M,  (ii) LLaMA-0.5 B distilled,  (iii) T5-small-110 M.\nDatasets / Tasks:  GLUE (all tasks), Alpaca-52 K instruction fine-tune, WikiText-2 language modelling.\nHardware:  single RTX-2060-6 GB and Jetson Orin 8 GB.\nBaselines:  Full FT, LoRA-8 r, MEFT (rev-adapter), VeLoRA( rank-1 ), Few-Bit Backward(3-bit), MONET schedule, and naive combo VeLoRA+LoRA.\nMetrics:\n• Peak resident GPU memory (PyTorch profiler)\n• Tokens/s and wall-clock epoch time\n• Task accuracy / Perplexity drop vs Full FT\n• Additional compute overhead (%)\nAblations:  (1) remove BAP planner (uniform policy),  (2) disable optimizer quantisation,  (3) vary derivative bit-width 2–4,  (4) planner adaptive vs static.\nRobustness:  repeat each run with 3 seeds; measure convergence curves and sensitivity to learning-rate sweeps.\nResult: Expected:  \n• UCT fits MobileLLM-350 M fine-tuning inside 4 GB VRAM (baseline LoRA needs 7 GB) with <0.4 % GLUE average drop and 15 % extra compute.  \n• On LLaMA-0.5 B UCT cuts peak memory by 68 % over best single method (VeLoRA) and 44 % over MONET while matching perplexity within 0.3.  \n• Planner ablation shows +1.2 GB memory and 0.6 % accuracy loss, proving necessity of layer-wise policy.  \n• Runtime controller prevents OOM in 100 % of stress-tests with ≤2 % throughput penalty.  \n• Derivative 3-bit vs full-precision shows negligible (<0.1) GLUE score change.\nConclusion: UCT delivers the first end-to-end, budget-aware training toolkit that jointly compresses activations, gradients and optimizer state, enabling practical on-device fine-tuning of sub-billion LMs on 4-8 GB hardware.  Academically, it demonstrates that heterogeneous layer policies outperform uniform compression and that combining reversible execution with activation projection is feasible.  Practically, UCT can be integrated into mobile inference libraries (e.g., ExecuTorch) to support user-customised fine-tuning without cloud resources.  Future work: extend planner to handle mixed-precision weight quantisation and to learn policies via reinforcement learning, and apply UCT to vision-language or speech Transformers for fully on-device personalisation.",
     "experimental_design": {
