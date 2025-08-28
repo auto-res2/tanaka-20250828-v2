@@ -6,5 +6,82 @@
     "edge LLM optimization",
     "lightweight decoder architecture",
     "fast transformer quantization"
+  ],
+  "research_study_list": [
+    {
+      "title": "Speculative Decoding with Big Little Decoder"
+    },
+    {
+      "title": "MiniCache: KV Cache Compression in Depth Dimension for Large Language Models"
+    },
+    {
+      "title": "Cramming: Training a Language Model on a single GPU in one day."
+    },
+    {
+      "title": "VeLoRA: Memory Efficient Training using Rank-1 Sub-Token Projections"
+    },
+    {
+      "title": "SpecExec: Massively Parallel Speculative Decoding For Interactive LLM Inference on Consumer Devices"
+    },
+    {
+      "title": "MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention"
+    },
+    {
+      "title": "IceFormer: Accelerated Inference with Long-Sequence Transformers on CPUs"
+    },
+    {
+      "title": "EL-Attention: Memory Efficient Lossless Attention for Generation"
+    },
+    {
+      "title": "Response Length Perception and  Sequence Scheduling: An LLM-Empowered LLM Inference Pipeline"
+    },
+    {
+      "title": "Iron: Private Inference on Transformers"
+    },
+    {
+      "title": "SpQR: A Sparse-Quantized Representation for Near-Lossless LLM Weight Compression"
+    },
+    {
+      "title": "Compressing Large Language Models using Low Rank and Low Precision Decomposition"
+    },
+    {
+      "title": "POET: Training Neural Networks on Tiny Devices with Integrated Rematerialization and Paging"
+    },
+    {
+      "title": "POET: Training Neural Networks on Tiny Devices with Integrated Rematerialization and Paging"
+    },
+    {
+      "title": "MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases"
+    },
+    {
+      "title": "LiteTransformerSearch: Training-free Neural Architecture Search for Efficient Language Models"
+    },
+    {
+      "title": "LiteTransformerSearch: Training-free Neural Architecture Search for Efficient Language Models"
+    },
+    {
+      "title": "Lite DETR: An Interleaved Multi-Scale Encoder for Efficient DETR"
+    },
+    {
+      "title": "DeLighT: Deep and Light-weight Transformer"
+    },
+    {
+      "title": "Towards Disentangling Information Paths with Coded ResNeXt"
+    },
+    {
+      "title": "Jetfire: Efficient and Accurate Transformer Pretraining with INT8 Data Flow and Per-Block Quantization"
+    },
+    {
+      "title": "FrameQuant: Flexible Low-Bit Quantization for Transformers"
+    },
+    {
+      "title": "Training Transformers with 4-bit Integers"
+    },
+    {
+      "title": "Transformer-VQ: Linear-Time Transformers via Vector Quantization"
+    },
+    {
+      "title": "Outlier-aware Slicing for Post-Training Quantization in Vision Transformer"
+    }
   ]
 }
