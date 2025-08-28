@@ -6,5 +6,82 @@
     "low memory training transformers",
     "reformer attention",
     "weight sharing transformer"
+  ],
+  "research_study_list": [
+    {
+      "title": "Blockwise Parallel Transformers for Large Context Models"
+    },
+    {
+      "title": "Reformer: The Efficient Transformer"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "MemoryFormer : Minimize Transformer Computation by Removing Fully-Connected Layers"
+    },
+    {
+      "title": "RingAttention with Blockwise Transformers for Near-Infinite Context"
+    },
+    {
+      "title": "Shapeshifter: a Parameter-efficient Transformer using Factorized Reshaped Matrices"
+    },
+    {
+      "title": "ReLoRA: High-Rank Training Through Low-Rank Updates"
+    },
+    {
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
+    },
+    {
+      "title": "APT: Adaptive Pruning and Tuning Pretrained Language Models for Efficient Training and Inference"
+    },
+    {
+      "title": "APT: Adaptive Pruning and Tuning Pretrained Language Models for Efficient Training and Inference"
+    },
+    {
+      "title": "Tempo: Accelerating Transformer-Based Model Training through Memory Footprint Reduction"
+    },
+    {
+      "title": "Softmax Output Approximation for Activation Memory-Efficient Training of Attention-based Networks"
+    },
+    {
+      "title": "ReLoRA: High-Rank Training Through Low-Rank Updates"
+    },
+    {
+      "title": "Reformer: The Efficient Transformer"
+    },
+    {
+      "title": "Reducing Fine-Tuning Memory Overhead by Approximate and Memory-Sharing Backpropagation"
+    },
+    {
+      "title": "Reformer: The Efficient Transformer"
+    },
+    {
+      "title": "FourierFormer: Transformer Meets Generalized Fourier Integral Theorem"
+    },
+    {
+      "title": "Random Feature Attention"
+    },
+    {
+      "title": "KDEformer: Accelerating Transformers via Kernel Density Estimation"
+    },
+    {
+      "title": "Recasting Self-Attention with Holographic Reduced Representations"
+    },
+    {
+      "title": "Learning to Jointly Share and Prune Weights for Grounding Based Vision and Language Models"
+    },
+    {
+      "title": "Dynamic Layer Tying for Parameter-Efficient Transformers"
+    },
+    {
+      "title": "Kronecker-Factored Approximate Curvature for Modern Neural Network Architectures"
+    },
+    {
+      "title": "Parameter Efficient Multimodal Transformers for Video Representation Learning"
+    },
+    {
+      "title": "Mimetic Initialization of Self-Attention Layers"
+    }
   ]
 }
