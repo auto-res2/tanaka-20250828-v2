@@ -565,6 +565,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "BERT: pre-training of deep bidirectional transformers for language understanding"
+    },
+    {
+      "title": "Roberta: A robustly optimized BERT pretraining approach"
+    },
+    {
+      "title": "Exploring the limits of transfer learning with a unified text-to-text transformer"
+    },
+    {
+      "title": "Masked autoencoders are scalable vision learners"
+    },
+    {
+      "title": "Simmim: a simple framework for masked image modeling"
+    },
+    {
+      "title": "wav2vec 2.0: A framework for self-supervised learning of speech representations"
+    },
+    {
+      "title": "Vilbert: Pretraining task-agnostic visiolinguistic representations for vision-and-language tasks"
+    },
+    {
+      "title": "LXMERT: learning cross-modality encoder representations from transformers"
+    },
+    {
+      "title": "OPT: open pre-trained transformer language models"
+    },
+    {
+      "title": "BLOOM: A 176b-parameter open-access multilingual language model"
+    },
+    {
+      "title": "Llama: Open and efficient foundation language models"
+    },
+    {
+      "title": "Unifying language learning paradigms"
+    },
+    {
+      "title": "Parameter-efficient fine-tuning without introducing new latency"
+    },
+    {
+      "title": "Parameter-efficient transfer learning for NLP"
+    },
+    {
+      "title": "Prefix-tuning: Optimizing continuous prompts for generation"
+    },
+    {
+      "title": "Adapterfusion: Non-destructive task composition for transfer learning"
+    },
+    {
+      "title": "Lora: Low-rank adaptation of large language models"
+    },
+    {
+      "title": "Towards a unified view of parameter-efficient transfer learning"
+    },
+    {
+      "title": "The power of scale for parameter-efficient prompt tuning"
+    },
+    {
+      "title": "Y-tuning: An efficient tuning paradigm for large-scale pre-trained models via label representation learning"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Even \"small\" language models (50-300 M parameters) still require >20 GB of GPU memory to train because memory scales with (1) three-or-more optimizer copies of the parameters and (2) the full activation stack for back-propagation. Existing techniques usually tackle ONE of these bottlenecks—e.g. reversible layers save activations, PEFT/LoRA saves parameter memory, in-place GELU or blockwise attention trims specific sub-modules—but no architecture jointly keeps BOTH parameter-state and activation memory below the capacity of a single consumer-grade 8-16 GB GPU while maintaining accuracy and speed. This prevents low-resource labs or on-device learning from pre-training or substantially fine-tuning language models.\nMethods: We propose RASST (Reversible Adapter-Shared Structured Transformer), a unified architecture that collapses BOTH memory axes.\n1.  Reversible skeleton: Each Transformer layer is a MEFT-style reversible block (F=attention, G=FFN) so activations are recomputed instead of stored.\n2.  Shared Structured Base Weights:  For every linear map (Q,K,V,FFN), the large weight W is FACTORED as  W = U_s + Δ, where U_s is a frozen, 8-bit **structured unrestricted-rank matrix (SURM)** (circulant / Toeplitz) shared ACROSS ALL LAYERS; it provides high representational rank at negligible memory.\n3.  Low-Rank Adapters with ReLoRA restarts: Δ = A·B^T (r≪d).  Only A,B are trainable.  Every R steps the low-rank update is merged into U_s (high-rank accumulation) and A,B are re-initialized, following ReLoRA to limit optimizer state.\n4.  In-place Layers: Replace GELU and LayerNorm with ReGELU2 and Tempo Inplace-LN (needs only 2-8 bit masks) to avoid storing their inputs.\n5.  Blockwise FlashAttention + chunked FFN as in BPT to keep per-layer workspace O(T) not O(T²).\n6.  Optimizer: use K-FAC-reduce stored on CPU; only the small adapter parameters participate, so factors fit even on small GPUs.  For very tight budgets Adam8-bit can be swapped.\n7.  Implementation detail: parameters stored in 8-bit, adapters in 16-bit; weight tying across even-odd layers is allowed and learned by a light RL agent (Dynamic Layer Tying) but costs no activations.\nExperimental Setup: Pre-training:\n• Models: GPT-Small (125 M), GPT-Medium (355 M) vanilla; RASST-125 M and RASST-355 M (same hidden sizes, r=32 adapters, shared SURM 8-bit).\n• Hardware: single RTX-3080-Ti (12 GB) and single RTX-2060 (6 GB) to highlight low-memory regime.\n• Data: WikiText-103 (pre-training) → fine-tune on PennTreeBank, GLUE.\n• Metrics:   – Peak CUDA memory;   – Tokens/sec;   – Validation perplexity / GLUE score.\n• Baselines:  (a) Vanilla model with gradient-checkpointing; (b) Reformer (rev only); (c) LoRA-128; (d) MEFT; (e) Tempo.\n• Ablations: – remove reversible; – no in-place ops; – no structured base; – adapter rank 0 (shared weights only).\nRobustness:\n• Train with sequence length 1 K & 4 K to test BPT memory curve.\n• Finetune with half-precision and full INT8 weight-only quantization.\nTime-to-accuracy curves and wall-clock energy will be reported.\nResult: Expected: \n• Peak training memory drops by 65-70 % vs vanilla and by 40 % vs best single-technique baseline, fitting 355 M model in 10 GB and 125 M in 5 GB.\n• Throughput decreases <10 % compared to FlashAttention baseline; due to recomputation, wall-clock epoch time is similar.\n• Validation PPL within +1 % of vanilla; GLUE average drops ≤0.5 points.\n• Ablation confirms each component contributes (≈30 % memory from reversible, 20 % from in-place, 25 % from parameter scheme).\n• Scaling to 4 K tokens shows linear memory growth, unlike vanilla.\n• INT8 inference yields same accuracy → path to on-device.\nConclusion: RASST demonstrates that a carefully composed set of orthogonal ideas—reversible computation, structured shared weights and periodic low-rank updates, in-place activations, and blockwise kernels—enables full pre-training and fine-tuning of 100-300 M-parameter language models on commodity GPUs.  Academically, it unifies parameter- and activation-efficient lines of research and supplies the first empirical proof that sub-10 GB end-to-end training of non-toy LMs is feasible without severe accuracy loss.  Practically, this paves the way for personalized or domain-specific LMs trained at the edge, and for democratizing LM research in resource-constrained environments.  Future work: extend RASST to multimodal Transformers, explore learned SURM structures, and integrate online compression for the KV-cache during long-context inference.",
     "experimental_design": {
