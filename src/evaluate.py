@@ -3,7 +3,7 @@
 """
 Evaluation utilities and plotting helpers for RASST experiments.
 - estimate_ppl, peak_memory_report
-- plotting helpers that save high-quality PDFs to .research/iteration2/images
+- plotting helpers that save high-quality PDFs to .research/iteration3/images
 """
 import os
 import math
@@ -24,7 +24,7 @@ import seaborn as sns
 plt.rcParams['pdf.fonttype'] = 42
 plt.rcParams['ps.fonttype'] = 42
 
-IMAGES_DIR = os.path.join('.research', 'iteration2', 'images')
+IMAGES_DIR = os.path.join('.research', 'iteration3', 'images')
 
 def _ensure_images_dir() -> str:
     os.makedirs(IMAGES_DIR, exist_ok=True)
