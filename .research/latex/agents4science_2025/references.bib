@@ -5,3 +5,774 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{adepu-2024-framequant,
+ abstract = {Transformers are the backbone of powerful foundation models for many Vision
+and Natural Language Processing tasks. But their compute and memory/storage
+footprint is large, and so, serving such models is expensive often requiring
+high-end hardware. To mitigate this difficulty, Post-Training Quantization
+seeks to modify a pre-trained model and quantize it to eight bits or lower,
+significantly boosting compute/memory/latency efficiency. Such models have been
+successfully quantized to four bits with some performance loss. In this work,
+we outline a simple scheme to quantize Transformer-based models to just two
+bits (plus some overhead) with only a small drop in accuracy. Key to our
+formulation is a concept borrowed from Harmonic analysis called Fusion Frames.
+Our main finding is that the quantization must take place not in the original
+weight space, but instead in the Fusion Frame representations. If quantization
+is interpreted as the addition of noise, our casting of the problem allows
+invoking an extensive body of known consistent recovery and noise robustness
+guarantees. Further, if desired, de-noising filters are known in closed form.
+We show empirically, via a variety of experiments, that (almost) two-bit
+quantization for Transformer models promises sizable efficiency gains. The code
+is available at https://github.com/vsingh-group/FrameQuant},
+ arxiv_url = {https://arxiv.org/pdf/2403.06082v2.pdf},
+ author = {Harshavardhan Adepu and Zhanpeng Zeng and Li Zhang and Vikas Singh},
+ title = {FrameQuant: Flexible Low-Bit Quantization for Transformers},
+ year = {2024}
+}
+
+@article{author-year-iron,
+ title = {Iron: Private Inference on Transformers}
+}
+
+@article{author-year-outlier,
+ title = {Outlier-aware Slicing for Post-Training Quantization in Vision Transformer}
+}
+
+@article{avranas-2022-towards,
+ abstract = {The conventional, widely used treatment of deep learning models as black
+boxes provides limited or no insights into the mechanisms that guide neural
+network decisions. Significant research effort has been dedicated to building
+interpretable models to address this issue. Most efforts either focus on the
+high-level features associated with the last layers, or attempt to interpret
+the output of a single layer. In this paper, we take a novel approach to
+enhance the transparency of the function of the whole network. We propose a
+neural network architecture for classification, in which the information that
+is relevant to each class flows through specific paths. These paths are
+designed in advance before training leveraging coding theory and without
+depending on the semantic similarities between classes. A key property is that
+each path can be used as an autonomous single-purpose model. This enables us to
+obtain, without any additional training and for any class, a lightweight binary
+classifier that has at least $60\%$ fewer parameters than the original network.
+Furthermore, our coding theory based approach allows the neural network to make
+early predictions at intermediate layers during inference, without requiring
+its full evaluation. Remarkably, the proposed architecture provides all the
+aforementioned properties while improving the overall accuracy. We demonstrate
+these properties on a slightly modified ResNeXt model tested on CIFAR-10/100
+and ImageNet-1k.},
+ arxiv_url = {https://arxiv.org/pdf/2202.05343v2.pdf},
+ author = {Apostolos Avranas and Marios Kountouris},
+ title = {Towards Disentangling Information Paths with Coded ResNeXt},
+ year = {2022}
+}
+
+@article{dettmers-2023-spqr,
+ abstract = {Recent advances in large language model (LLM) pretraining have led to
+high-quality LLMs with impressive abilities. By compressing such LLMs via
+quantization to 3-4 bits per parameter, they can fit into memory-limited
+devices such as laptops and mobile phones, enabling personalized use. However,
+quantization down to 3-4 bits per parameter usually leads to moderate-to-high
+accuracy losses, especially for smaller models in the 1-10B parameter range,
+which are well-suited for edge deployments. To address this accuracy issue, we
+introduce the Sparse-Quantized Representation (SpQR), a new compressed format
+and quantization technique which enables for the first time near-lossless
+compression of LLMs across model scales, while reaching similar compression
+levels to previous methods. SpQR works by identifying and isolating outlier
+weights, which cause particularly-large quantization errors, and storing them
+in higher precision, while compressing all other weights to 3-4 bits, and
+achieves relative accuracy losses of less than 1% in perplexity for
+highly-accurate LLaMA and Falcon LLMs. This makes it possible to run 33B
+parameter LLM on a single 24 GB consumer GPU without any performance
+degradation at 15% speedup thus making powerful LLMs available to consumer
+without any downsides. SpQR comes with efficient algorithms for both encoding
+weights into its format, as well as decoding them efficiently at runtime.
+Specifically, we provide an efficient GPU inference algorithm for SpQR which
+yields faster inference than 16-bit baselines at similar accuracy, while
+enabling memory compression gains of more than 4x.},
+ arxiv_url = {https://arxiv.org/pdf/2306.03078v1.pdf},
+ author = {Tim Dettmers and Ruslan Svirschevski and Vage Egiazarian and Denis Kuznedelev and Elias Frantar and Saleh Ashkboos and Alexander Borzunov and Torsten Hoefler and Dan Alistarh},
+ title = {SpQR: A Sparse-Quantized Representation for Near-Lossless LLM Weight Compression},
+ year = {2023}
+}
+
+@article{geiping-2022-cramming,
+ abstract = {Recent trends in language modeling have focused on increasing performance
+through scaling, and have resulted in an environment where training language
+models is out of reach for most researchers and practitioners. While most in
+the community are asking how to push the limits of extreme computation, we ask
+the opposite question: How far can we get with a single GPU in just one day?
+  We investigate the downstream performance achievable with a transformer-based
+language model trained completely from scratch with masked language modeling
+for a single day on a single consumer GPU. Aside from re-analyzing nearly all
+components of the pretraining pipeline for this scenario and providing a
+modified pipeline with performance close to BERT, we investigate why scaling
+down is hard, and which modifications actually improve performance in this
+scenario. We provide evidence that even in this constrained setting,
+performance closely follows scaling laws observed in large-compute settings.
+Through the lens of scaling laws, we categorize a range of recent improvements
+to training and architecture and discuss their merit and practical
+applicability (or lack thereof) for the limited compute setting.},
+ arxiv_url = {https://arxiv.org/pdf/2212.14034v1.pdf},
+ author = {Jonas Geiping and Tom Goldstein},
+ title = {Cramming: Training a Language Model on a single GPU in one day.},
+ year = {2022}
+}
+
+@article{javaheripi-2022-litetransformersearch,
+ abstract = {The Transformer architecture is ubiquitously used as the building block of
+large-scale autoregressive language models. However, finding architectures with
+the optimal trade-off between task performance (perplexity) and hardware
+constraints like peak memory utilization and latency is non-trivial. This is
+exacerbated by the proliferation of various hardware. We leverage the somewhat
+surprising empirical observation that the number of decoder parameters in
+autoregressive Transformers has a high rank correlation with task performance,
+irrespective of the architecture topology. This observation organically induces
+a simple Neural Architecture Search (NAS) algorithm that uses decoder
+parameters as a proxy for perplexity without need for any model training. The
+search phase of our training-free algorithm, dubbed Lightweight Transformer
+Search (LTS), can be run directly on target devices since it does not require
+GPUs. Using on-target-device measurements, LTS extracts the Pareto-frontier of
+perplexity versus any hardware performance cost. We evaluate LTS on diverse
+devices from ARM CPUs to NVIDIA GPUs and two popular autoregressive Transformer
+backbones: GPT-2 and Transformer-XL. Results show that the perplexity of
+16-layer GPT-2 and Transformer-XL can be achieved with up to 1.5x, 2.5x faster
+runtime and 1.2x, 2.0x lower peak memory utilization. When evaluated in zero
+and one-shot settings, LTS Pareto-frontier models achieve higher average
+accuracy compared to the 350M parameter OPT across 14 tasks, with up to 1.6x
+lower latency. LTS extracts the Pareto-frontier in under 3 hours while running
+on a commodity laptop. We effectively remove the carbon footprint of hundreds
+of GPU hours of training during search, offering a strong simple baseline for
+future NAS methods in autoregressive language modeling.},
+ arxiv_url = {https://arxiv.org/pdf/2203.02094v2.pdf},
+ author = {Mojan Javaheripi and Gustavo H. de Rosa and Subhabrata Mukherjee and Shital Shah and Tomasz L. Religa and Caio C. T. Mendes and Sebastien Bubeck and Farinaz Koushanfar and Debadeepta Dey},
+ github_url = {https://github.com/microsoft/archai},
+ title = {LiteTransformerSearch: Training-free Neural Architecture Search for Efficient Language Models},
+ year = {2022}
+}
+
+@article{jiang-2024-minference,
+ abstract = {The computational challenges of Large Language Model (LLM) inference remain a
+significant barrier to their widespread deployment, especially as prompt
+lengths continue to increase. Due to the quadratic complexity of the attention
+computation, it takes 30 minutes for an 8B LLM to process a prompt of 1M tokens
+(i.e., the pre-filling stage) on a single A100 GPU. Existing methods for
+speeding up prefilling often fail to maintain acceptable accuracy or efficiency
+when applied to long-context LLMs. To address this gap, we introduce MInference
+(Milliontokens Inference), a sparse calculation method designed to accelerate
+pre-filling of long-sequence processing. Specifically, we identify three unique
+patterns in long-context attention matrices-the A-shape, Vertical-Slash, and
+Block-Sparsethat can be leveraged for efficient sparse computation on GPUs. We
+determine the optimal pattern for each attention head offline and dynamically
+build sparse indices based on the assigned pattern during inference. With the
+pattern and sparse indices, we perform efficient sparse attention calculations
+via our optimized GPU kernels to significantly reduce the latency in the
+pre-filling stage of long-context LLMs. Our proposed technique can be directly
+applied to existing LLMs without any modifications to the pre-training setup or
+additional fine-tuning. By evaluating on a wide range of downstream tasks,
+including InfiniteBench, RULER, PG-19, and Needle In A Haystack, and models
+including LLaMA-3-1M, GLM4-1M, Yi-200K, Phi-3-128K, and Qwen2-128K, we
+demonstrate that MInference effectively reduces inference latency by up to 10x
+for pre-filling on an A100, while maintaining accuracy. Our code is available
+at https://aka.ms/MInference.},
+ arxiv_url = {https://arxiv.org/pdf/2407.02490v2.pdf},
+ author = {Huiqiang Jiang and Yucheng Li and Chengruidong Zhang and Qianhui Wu and Xufang Luo and Surin Ahn and Zhenhua Han and Amir H. Abdi and Dongsheng Li and Chin-Yew Lin and Yuqing Yang and Lili Qiu},
+ github_url = {https://github.com/huggingface/transformers},
+ title = {MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention},
+ year = {2024}
+}
+
+@article{kim-2023-speculative,
+ abstract = {The recent emergence of Large Language Models based on the Transformer
+architecture has enabled dramatic advancements in the field of Natural Language
+Processing. However, these models have long inference latency, which limits
+their deployment and makes them prohibitively expensive for various real-time
+applications. The inference latency is further exacerbated by autoregressive
+generative tasks, as models need to run iteratively to generate tokens
+sequentially without leveraging token-level parallelization. To address this,
+we propose Big Little Decoder (BiLD), a framework that can improve inference
+efficiency and latency for a wide range of text generation applications. The
+BiLD framework contains two models with different sizes that collaboratively
+generate text. The small model runs autoregressively to generate text with a
+low inference cost, and the large model is only invoked occasionally to refine
+the small model's inaccurate predictions in a non-autoregressive manner. To
+coordinate the small and large models, BiLD introduces two simple yet effective
+policies: (1) the fallback policy that determines when to hand control over to
+the large model; and (2) the rollback policy that determines when the large
+model needs to correct the small model's inaccurate predictions. To evaluate
+our framework across different tasks and models, we apply BiLD to various text
+generation scenarios encompassing machine translation on IWSLT 2017 De-En and
+WMT 2014 De-En, and summarization on XSUM and CNN/DailyMail. On an NVIDIA T4
+GPU, our framework achieves a speedup of up to 2.12x speedup with minimal
+generation quality degradation. Furthermore, our framework is fully
+plug-and-play and can be applied without any modifications in the training
+process or model architecture. Our code is open-sourced},
+ arxiv_url = {https://arxiv.org/pdf/2302.07863v4.pdf},
+ author = {Sehoon Kim and Karttikeya Mangalam and Suhong Moon and Jitendra Malik and Michael W. Mahoney and Amir Gholami and Kurt Keutzer},
+ github_url = {https://github.com/kssteven418/BigLittleDecoder},
+ title = {Speculative Decoding with Big Little Decoder},
+ year = {2023}
+}
+
+@article{li-2023-lite,
+ abstract = {Recent DEtection TRansformer-based (DETR) models have obtained remarkable
+performance. Its success cannot be achieved without the re-introduction of
+multi-scale feature fusion in the encoder. However, the excessively increased
+tokens in multi-scale features, especially for about 75\% of low-level
+features, are quite computationally inefficient, which hinders real
+applications of DETR models. In this paper, we present Lite DETR, a simple yet
+efficient end-to-end object detection framework that can effectively reduce the
+GFLOPs of the detection head by 60\% while keeping 99\% of the original
+performance. Specifically, we design an efficient encoder block to update
+high-level features (corresponding to small-resolution feature maps) and
+low-level features (corresponding to large-resolution feature maps) in an
+interleaved way. In addition, to better fuse cross-scale features, we develop a
+key-aware deformable attention to predict more reliable attention weights.
+Comprehensive experiments validate the effectiveness and efficiency of the
+proposed Lite DETR, and the efficient encoder strategy can generalize well
+across existing DETR-based models. The code will be available in
+\url{https://github.com/IDEA-Research/Lite-DETR}.},
+ arxiv_url = {https://arxiv.org/pdf/2303.07335v1.pdf},
+ author = {Feng Li and Ailing Zeng and Shilong Liu and Hao Zhang and Hongyang Li and Lei Zhang and Lionel M. Ni},
+ title = {Lite DETR: An Interleaved Multi-Scale Encoder for Efficient DETR},
+ year = {2023}
+}
+
+@article{lingle-2023-transformer,
+ abstract = {We introduce Transformer-VQ, a decoder-only transformer computing
+softmax-based dense self-attention in linear time. Transformer-VQ's efficient
+attention is enabled by vector-quantized keys and a novel caching mechanism. In
+our large-scale experiments, Transformer-VQ is shown highly competitive in
+quality, obtaining 0.99 bpb on Enwik8, 26.6 ppl on PG-19, and 3.16 bpb on
+ImageNet64. In addition, the optimized implementation of Transformer-VQ is over
+3x faster than a comparable quadratic-time transformer at sequence length 8k,
+is over 12x faster at 32k, and can scale to 131k with similar throughput. Code
+available: \url{https://github.com/transformer-vq/transformer_vq}},
+ arxiv_url = {https://arxiv.org/pdf/2309.16354v2.pdf},
+ author = {Lucas D. Lingle},
+ github_url = {https://github.com/transformer-vq/transformer_vq},
+ title = {Transformer-VQ: Linear-Time Transformers via Vector Quantization},
+ year = {2023}
+}
+
+@article{liu-2024-minicache,
+ abstract = {A critical approach for efficiently deploying computationally demanding large
+language models (LLMs) is Key-Value (KV) caching. The KV cache stores key-value
+states of previously generated tokens, significantly reducing the need for
+repetitive computations and thereby lowering latency in autoregressive
+generation. However, the size of the KV cache grows linearly with sequence
+length, posing challenges for applications requiring long context input and
+extensive sequence generation. In this paper, we present a simple yet effective
+approach, called MiniCache, to compress the KV cache across layers from a novel
+depth perspective, significantly reducing the memory footprint for LLM
+inference. Our approach is based on the observation that KV cache states
+exhibit high similarity between the adjacent layers in the middle-to-deep
+portion of LLMs. To facilitate merging, we propose disentangling the states
+into the magnitude and direction components, interpolating the directions of
+the state vectors while preserving their lengths unchanged. Furthermore, we
+introduce a token retention strategy to keep highly distinct state pairs
+unmerged, thus preserving the information with minimal additional storage
+overhead. Our MiniCache is training-free and general, complementing existing KV
+cache compression strategies, such as quantization and sparsity. We conduct a
+comprehensive evaluation of MiniCache utilizing various models including
+LLaMA-2, LLaMA-3, Phi-3, Mistral, and Mixtral across multiple benchmarks,
+demonstrating its exceptional performance in achieving superior compression
+ratios and high throughput. On the ShareGPT dataset, LLaMA-2-7B with 4-bit
+MiniCache achieves a remarkable compression ratio of up to 5.02x, enhances
+inference throughput by approximately 5x, and reduces the memory footprint by
+41% compared to the FP16 full cache baseline, all while maintaining
+near-lossless performance.},
+ arxiv_url = {https://arxiv.org/pdf/2405.14366v2.pdf},
+ author = {Akide Liu and Jing Liu and Zizheng Pan and Yefei He and Gholamreza Haffari and Bohan Zhuang},
+ title = {MiniCache: KV Cache Compression in Depth Dimension for Large Language Models},
+ year = {2024}
+}
+
+@article{liu-2024-mobilellm,
+ abstract = {This paper addresses the growing need for efficient large language models
+(LLMs) on mobile devices, driven by increasing cloud costs and latency
+concerns. We focus on designing top-quality LLMs with fewer than a billion
+parameters, a practical choice for mobile deployment. Contrary to prevailing
+belief emphasizing the pivotal role of data and parameter quantity in
+determining model quality, our investigation underscores the significance of
+model architecture for sub-billion scale LLMs. Leveraging deep and thin
+architectures, coupled with embedding sharing and grouped-query attention
+mechanisms, we establish a strong baseline network denoted as MobileLLM, which
+attains a remarkable 2.7%/4.3% accuracy boost over preceding 125M/350M
+state-of-the-art models. Additionally, we propose an immediate block-wise
+weight-sharing approach with no increase in model size and only marginal
+latency overhead. The resultant models, denoted as MobileLLM-LS, demonstrate a
+further accuracy enhancement of 0.7%/0.8% than MobileLLM 125M/350M. Moreover,
+MobileLLM model family shows significant improvements compared to previous
+sub-billion models on chat benchmarks, and demonstrates close correctness to
+LLaMA-v2 7B in API calling tasks, highlighting the capability of small models
+for common on-device use cases.},
+ arxiv_url = {https://arxiv.org/pdf/2402.14905v2.pdf},
+ author = {Zechun Liu and Changsheng Zhao and Forrest Iandola and Chen Lai and Yuandong Tian and Igor Fedorov and Yunyang Xiong and Ernie Chang and Yangyang Shi and Raghuraman Krishnamoorthi and Liangzhen Lai and Vikas Chandra},
+ title = {MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases},
+ year = {2024}
+}
+
+@article{mao-2024-iceformer,
+ abstract = {One limitation of existing Transformer-based models is that they cannot
+handle very long sequences as input since their self-attention operations
+exhibit quadratic time and space complexity. This problem becomes especially
+acute when Transformers are deployed on hardware platforms equipped only with
+CPUs. To address this issue, we propose a novel method for accelerating
+self-attention at inference time that works with pretrained Transformer models
+out-of-the-box without requiring retraining. We experiment using our method to
+accelerate various long-sequence Transformers, including a leading LLaMA
+2-based LLM, on various benchmarks and demonstrate a greater speedup of 2.73x -
+7.63x while retaining 98.6% - 99.6% of the accuracy of the original pretrained
+models. The code is available on our project website at
+https://yuzhenmao.github.io/IceFormer/.},
+ arxiv_url = {https://arxiv.org/pdf/2405.02842v1.pdf},
+ author = {Yuzhen Mao and Martin Ester and Ke Li},
+ github_url = {https://github.com/google-research/long-range-arena},
+ title = {IceFormer: Accelerated Inference with Long-Sequence Transformers on CPUs},
+ year = {2024}
+}
+
+@article{mehta-2020-delight,
+ abstract = {We introduce a deep and light-weight transformer, DeLighT, that delivers
+similar or better performance than standard transformer-based models with
+significantly fewer parameters. DeLighT more efficiently allocates parameters
+both (1) within each Transformer block using the DeLighT transformation, a deep
+and light-weight transformation, and (2) across blocks using block-wise
+scaling, which allows for shallower and narrower DeLighT blocks near the input
+and wider and deeper DeLighT blocks near the output. Overall, DeLighT networks
+are 2.5 to 4 times deeper than standard transformer models and yet have fewer
+parameters and operations. Experiments on benchmark machine translation and
+language modeling tasks show that DeLighT matches or improves the performance
+of baseline Transformers with 2 to 3 times fewer parameters on average. Our
+source code is available at: \url{https://github.com/sacmehta/delight}},
+ arxiv_url = {https://arxiv.org/pdf/2008.00623v2.pdf},
+ author = {Sachin Mehta and Marjan Ghazvininejad and Srinivasan Iyer and Luke Zettlemoyer and Hannaneh Hajishirzi},
+ title = {DeLighT: Deep and Light-weight Transformer},
+ year = {2020}
+}
+
+@article{miles-2024-velora,
+ abstract = {Large language models (LLMs) have recently emerged as powerful tools for
+tackling many language-processing tasks. Despite their success, training and
+fine-tuning these models is still far too computationally and memory intensive.
+In this paper, we identify and characterise the important components needed for
+effective model convergence using gradient descent. In doing so we find that
+the intermediate activations used to implement backpropagation can be
+excessively compressed without incurring any degradation in performance. This
+result leads us to a cheap and memory-efficient algorithm for both fine-tuning
+and pre-training LLMs. The proposed algorithm simply divides the tokens up into
+smaller sub-tokens before projecting them onto a fixed 1-dimensional subspace
+during the forward pass. These features are then coarsely reconstructed during
+the backward pass to implement the update rules. We confirm the effectiveness
+of our algorithm as being complimentary to many state-of-the-art PEFT methods
+on the VTAB-1k fine-tuning benchmark. Furthermore, we outperform QLoRA for
+fine-tuning LLaMA and show competitive performance against other
+memory-efficient pre-training methods on the large-scale C4 dataset.},
+ arxiv_url = {https://arxiv.org/pdf/2405.17991v2.pdf},
+ author = {Roy Miles and Pradyumna Reddy and Ismail Elezi and Jiankang Deng},
+ github_url = {https://github.com/roymiles/VeLoRA},
+ title = {VeLoRA: Memory Efficient Training using Rank-1 Sub-Token Projections},
+ year = {2024}
+}
+
+@article{patil-2022-poet,
+ abstract = {Fine-tuning models on edge devices like mobile phones would enable
+privacy-preserving personalization over sensitive data. However, edge training
+has historically been limited to relatively small models with simple
+architectures because training is both memory and energy intensive. We present
+POET, an algorithm to enable training large neural networks on memory-scarce
+battery-operated edge devices. POET jointly optimizes the integrated search
+search spaces of rematerialization and paging, two algorithms to reduce the
+memory consumption of backpropagation. Given a memory budget and a run-time
+constraint, we formulate a mixed-integer linear program (MILP) for
+energy-optimal training. Our approach enables training significantly larger
+models on embedded devices while reducing energy consumption while not
+modifying mathematical correctness of backpropagation. We demonstrate that it
+is possible to fine-tune both ResNet-18 and BERT within the memory constraints
+of a Cortex-M class embedded device while outperforming current edge training
+methods in energy efficiency. POET is an open-source project available at
+https://github.com/ShishirPatil/poet},
+ arxiv_url = {https://arxiv.org/pdf/2207.07697v1.pdf},
+ author = {Shishir G. Patil and Paras Jain and Prabal Dutta and Ion Stoica and Joseph E. Gonzalez},
+ title = {POET: Training Neural Networks on Tiny Devices with Integrated Rematerialization and Paging},
+ year = {2022}
+}
+
+@article{saha-2024-compressing,
+ abstract = {The prohibitive sizes of Large Language Models (LLMs) today make it difficult
+to deploy them on memory-constrained edge devices. This work introduces $\rm
+CALDERA$ -- a new post-training LLM compression algorithm that harnesses the
+inherent low-rank structure of a weight matrix $\mathbf{W}$ by approximating it
+via a low-rank, low-precision decomposition as $\mathbf{W} \approx \mathbf{Q} +
+\mathbf{L}\mathbf{R}$. Here, $\mathbf{L}$ and $\mathbf{R}$ are low rank
+factors, and the entries of $\mathbf{Q}$, $\mathbf{L}$ and $\mathbf{R}$ are
+quantized. The model is compressed by substituting each layer with its
+$\mathbf{Q} + \mathbf{L}\mathbf{R}$ decomposition, and the zero-shot
+performance of the compressed model is evaluated. Additionally, $\mathbf{L}$
+and $\mathbf{R}$ are readily amenable to low-rank adaptation, consequently
+enhancing the zero-shot performance. $\rm CALDERA$ obtains this decomposition
+by formulating it as an optimization problem
+$\min_{\mathbf{Q},\mathbf{L},\mathbf{R}}\lVert(\mathbf{Q} +
+\mathbf{L}\mathbf{R} - \mathbf{W})\mathbf{X}^\top\rVert_{\rm F}^2$, where
+$\mathbf{X}$ is the calibration data, and $\mathbf{Q}, \mathbf{L}, \mathbf{R}$
+are constrained to be representable using low-precision formats. Theoretical
+upper bounds on the approximation error of $\rm CALDERA$ are established using
+a rank-constrained regression framework, and the tradeoff between compression
+ratio and model performance is studied by analyzing the impact of target rank
+and quantization bit budget. Results illustrate that compressing LlaMa-$2$
+$7$B/$13B$/$70$B and LlaMa-$3$ $8$B models using $\rm CALDERA$ outperforms
+existing post-training LLM compression techniques in the regime of less than
+$2.5$ bits per parameter. The implementation is available at:
+https://github.com/pilancilab/caldera.},
+ arxiv_url = {https://arxiv.org/pdf/2405.18886v2.pdf},
+ author = {Rajarshi Saha and Naomi Sagan and Varun Srivastava and Andrea J. Goldsmith and Mert Pilanci},
+ github_url = {https://github.com/pilancilab/caldera},
+ title = {Compressing Large Language Models using Low Rank and Low Precision Decomposition},
+ year = {2024}
+}
+
+@article{svirschevski-2024-specexec,
+ abstract = {As large language models gain widespread adoption, running them efficiently
+becomes crucial. Recent works on LLM inference use speculative decoding to
+achieve extreme speedups. However, most of these works implicitly design their
+algorithms for high-end datacenter hardware. In this work, we ask the opposite
+question: how fast can we run LLMs on consumer machines? Consumer GPUs can no
+longer fit the largest available models (50B+ parameters) and must offload them
+to RAM or SSD. When running with offloaded parameters, the inference engine can
+process batches of hundreds or thousands of tokens at the same time as just one
+token, making it a natural fit for speculative decoding. We propose SpecExec
+(Speculative Execution), a simple parallel decoding method that can generate up
+to 20 tokens per target model iteration for popular LLM families. It utilizes
+the high spikiness of the token probabilities distribution in modern LLMs and a
+high degree of alignment between model output probabilities. SpecExec takes the
+most probable tokens continuation from the draft model to build a "cache" tree
+for the target model, which then gets validated in a single pass. Using
+SpecExec, we demonstrate inference of 50B+ parameter LLMs on consumer GPUs with
+RAM offloading at 4-6 tokens per second with 4-bit quantization or 2-3 tokens
+per second with 16-bit weights.},
+ arxiv_url = {https://arxiv.org/pdf/2406.02532v3.pdf},
+ author = {Ruslan Svirschevski and Avner May and Zhuoming Chen and Beidi Chen and Zhihao Jia and Max Ryabinin},
+ title = {SpecExec: Massively Parallel Speculative Decoding For Interactive LLM Inference on Consumer Devices},
+ year = {2024}
+}
+
+@article{xi-2023-training,
+ abstract = {Quantizing the activation, weight, and gradient to 4-bit is promising to
+accelerate neural network training. However, existing 4-bit training methods
+require custom numerical formats which are not supported by contemporary
+hardware. In this work, we propose a training method for transformers with all
+matrix multiplications implemented with the INT4 arithmetic. Training with an
+ultra-low INT4 precision is challenging. To achieve this, we carefully analyze
+the specific structures of activation and gradients in transformers to propose
+dedicated quantizers for them. For forward propagation, we identify the
+challenge of outliers and propose a Hadamard quantizer to suppress the
+outliers. For backpropagation, we leverage the structural sparsity of gradients
+by proposing bit splitting and leverage score sampling techniques to quantize
+gradients accurately. Our algorithm achieves competitive accuracy on a wide
+range of tasks including natural language understanding, machine translation,
+and image classification. Unlike previous 4-bit training methods, our algorithm
+can be implemented on the current generation of GPUs. Our prototypical linear
+operator implementation is up to 2.2 times faster than the FP16 counterparts
+and speeds up the training by up to 35.1%.},
+ arxiv_url = {https://arxiv.org/pdf/2306.11987v2.pdf},
+ author = {Haocheng Xi and Changhao Li and Jianfei Chen and Jun Zhu},
+ github_url = {https://github.com/xijiu9/Train_Transformers_with_INT4},
+ title = {Training Transformers with 4-bit Integers},
+ year = {2023}
+}
+
+@article{xi-2024-jetfire,
+ abstract = {Pretraining transformers are generally time-consuming. Fully quantized
+training (FQT) is a promising approach to speed up pretraining. However, most
+FQT methods adopt a quantize-compute-dequantize procedure, which often leads to
+suboptimal speedup and significant performance degradation when used in
+transformers due to the high memory access overheads and low-precision
+computations. In this work, we propose Jetfire, an efficient and accurate INT8
+training method specific to transformers. Our method features an INT8 data flow
+to optimize memory access and a per-block quantization method to maintain the
+accuracy of pretrained transformers. Extensive experiments demonstrate that our
+INT8 FQT method achieves comparable accuracy to the FP16 training baseline and
+outperforms the existing INT8 training works for transformers. Moreover, for a
+standard transformer block, our method offers an end-to-end training speedup of
+1.42x and a 1.49x memory reduction compared to the FP16 baseline. Our code is
+open sourced at https://github.com/thu-ml/Jetfire-INT8Training.},
+ arxiv_url = {https://arxiv.org/pdf/2403.12422v2.pdf},
+ author = {Haocheng Xi and Yuxiang Chen and Kang Zhao and Kai Jun Teh and Jianfei Chen and Jun Zhu},
+ github_url = {https://github.com/NVIDIA/DeepLearningExamples},
+ title = {Jetfire: Efficient and Accurate Transformer Pretraining with INT8 Data Flow and Per-Block Quantization},
+ year = {2024}
+}
+
+@article{yan-2021-attention,
+ abstract = {Transformer model with multi-head attention requires caching intermediate
+results for efficient inference in generation tasks. However, cache brings new
+memory-related costs and prevents leveraging larger batch size for faster
+speed. We propose memory-efficient lossless attention (called EL-attention) to
+address this issue. It avoids heavy operations for building multi-head keys and
+values, cache for them is not needed. EL-attention constructs an ensemble of
+attention results by expanding query while keeping key and value shared. It
+produces the same result as multi-head attention with less GPU memory and
+faster inference speed. We conduct extensive experiments on Transformer, BART,
+and GPT-2 for summarization and question generation tasks. The results show
+EL-attention speeds up existing models by 1.6x to 5.3x without accuracy loss.},
+ arxiv_url = {https://arxiv.org/pdf/2105.04779v2.pdf},
+ author = {Yu Yan and Jiusheng Chen and Weizhen Qi and Nikhil Bhendawade and Yeyun Gong and Nan Duan and Ruofei Zhang},
+ github_url = {https://github.com/pytorch/fairseq},
+ title = {EL-Attention: Memory Efficient Lossless Attention for Generation},
+ year = {2021}
+}
+
+@article{zheng-2023-response,
+ abstract = {Large language models (LLMs) have revolutionized the field of AI,
+demonstrating unprecedented capacity across various tasks. However, the
+inference process for LLMs comes with significant computational costs. In this
+paper, we propose an efficient LLM inference pipeline that harnesses the power
+of LLMs. Our approach begins by tapping into the potential of LLMs to
+accurately perceive and predict the response length with minimal overhead. By
+leveraging this information, we introduce an efficient sequence scheduling
+technique that groups queries with similar response lengths into micro-batches.
+We evaluate our approach on real-world instruction datasets using the
+LLaMA-based model, and our results demonstrate an impressive 86% improvement in
+inference throughput without compromising effectiveness. Notably, our method is
+orthogonal to other inference acceleration techniques, making it a valuable
+addition to many existing toolkits (e.g., FlashAttention, Quantization) for LLM
+inference.},
+ arxiv_url = {https://arxiv.org/pdf/2305.13144v2.pdf},
+ author = {Zangwei Zheng and Xiaozhe Ren and Fuzhao Xue and Yang Luo and Xin Jiang and Yang You},
+ github_url = {https://github.com/zhengzangw/Sequence-Scheduling},
+ title = {Response Length Perception and  Sequence Scheduling: An LLM-Empowered LLM Inference Pipeline},
+ year = {2023}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author-year-gemini,
+ title = {Gemini: a family of highly capable multimodal models}
+}
+
+@article{author-year-introducing,
+ title = {Introducing meta llama 3: The most capable openly available llm to date.}
+}
+
+@article{brown-2020-language,
+ abstract = {Recent work has demonstrated substantial gains on many NLP tasks and
+benchmarks by pre-training on a large corpus of text followed by fine-tuning on
+a specific task. While typically task-agnostic in architecture, this method
+still requires task-specific fine-tuning datasets of thousands or tens of
+thousands of examples. By contrast, humans can generally perform a new language
+task from only a few examples or from simple instructions - something which
+current NLP systems still largely struggle to do. Here we show that scaling up
+language models greatly improves task-agnostic, few-shot performance, sometimes
+even reaching competitiveness with prior state-of-the-art fine-tuning
+approaches. Specifically, we train GPT-3, an autoregressive language model with
+175 billion parameters, 10x more than any previous non-sparse language model,
+and test its performance in the few-shot setting. For all tasks, GPT-3 is
+applied without any gradient updates or fine-tuning, with tasks and few-shot
+demonstrations specified purely via text interaction with the model. GPT-3
+achieves strong performance on many NLP datasets, including translation,
+question-answering, and cloze tasks, as well as several tasks that require
+on-the-fly reasoning or domain adaptation, such as unscrambling words, using a
+novel word in a sentence, or performing 3-digit arithmetic. At the same time,
+we also identify some datasets where GPT-3's few-shot learning still struggles,
+as well as some datasets where GPT-3 faces methodological issues related to
+training on large web corpora. Finally, we find that GPT-3 can generate samples
+of news articles which human evaluators have difficulty distinguishing from
+articles written by humans. We discuss broader societal impacts of this finding
+and of GPT-3 in general.},
+ arxiv_url = {https://arxiv.org/pdf/2005.14165v4.pdf},
+ author = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+ title = {Language models are few-shot learners},
+ year = {2020}
+}
+
+@article{ge-2023-model,
+ abstract = {In this study, we introduce adaptive KV cache compression, a plug-and-play
+method that reduces the memory footprint of generative inference for Large
+Language Models (LLMs). Different from the conventional KV cache that retains
+key and value vectors for all context tokens, we conduct targeted profiling to
+discern the intrinsic structure of attention modules. Based on the recognized
+structure, we then construct the KV cache in an adaptive manner: evicting
+long-range contexts on attention heads emphasizing local contexts, discarding
+non-special tokens on attention heads centered on special tokens, and only
+employing the standard KV cache for attention heads that broadly attend to all
+tokens. Moreover, with the lightweight attention profiling used to guide the
+construction of the adaptive KV cache, FastGen can be deployed without
+resource-intensive fine-tuning or re-training. In our experiments across
+various asks, FastGen demonstrates substantial reduction on GPU memory
+consumption with negligible generation quality loss. We will release our code
+and the compatible CUDA kernel for reproducibility.},
+ arxiv_url = {https://arxiv.org/pdf/2310.01801v4.pdf},
+ author = {Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianfeng Gao},
+ title = {Model tells you what to discard: Adaptive kv cache compression for llms},
+ year = {2023}
+}
+
+@article{kang-2024-gear,
+ abstract = {Key-value (KV) caching has become the de-facto to accelerate generation speed
+for large language models (LLMs) inference. However, the growing cache demand
+with increasing sequence length has transformed LLM inference to be a memory
+bound problem, significantly constraining the system throughput. Existing
+methods rely on dropping unimportant tokens or quantizing all entries
+uniformly. Such methods, however, often incur high approximation errors to
+represent the compressed matrices. The autoregressive decoding process further
+compounds the error of each step, resulting in critical deviation in model
+generation and deterioration of performance. To tackle this challenge, we
+propose GEAR, an efficient KV cache compression framework that achieves
+near-lossless high-ratio compression. GEAR first applies quantization to
+majority of entries of similar magnitudes to ultra-low precision. It then
+employs a low rank matrix to approximate the quantization error, and a sparse
+matrix to remedy individual errors from outlier entries. By adeptly integrating
+three techniques, GEAR is able to fully exploit their synergistic potentials.
+Our experiments demonstrate that compared to alternatives, GEAR achieves
+near-lossless 4-bit KV cache compression with up to 2.38x throughput
+improvement, while reducing peak-memory size up to 2.29x. Our code is publicly
+available at https://github.com/HaoKang-Timmy/GEAR.},
+ arxiv_url = {https://arxiv.org/pdf/2403.05527v4.pdf},
+ author = {Hao Kang and Qingru Zhang and Souvik Kundu and Geonhwa Jeong and Zaoxing Liu and Tushar Krishna and Tuo Zhao},
+ title = {Gear: An efficient kv cache compression recipefor near-lossless generative inference of llm},
+ year = {2024}
+}
+
+@article{kaplan-2020-scaling,
+ abstract = {We study empirical scaling laws for language model performance on the
+cross-entropy loss. The loss scales as a power-law with model size, dataset
+size, and the amount of compute used for training, with some trends spanning
+more than seven orders of magnitude. Other architectural details such as
+network width or depth have minimal effects within a wide range. Simple
+equations govern the dependence of overfitting on model/dataset size and the
+dependence of training speed on model size. These relationships allow us to
+determine the optimal allocation of a fixed compute budget. Larger models are
+significantly more sample-efficient, such that optimally compute-efficient
+training involves training very large models on a relatively modest amount of
+data and stopping significantly before convergence.},
+ arxiv_url = {https://arxiv.org/pdf/2001.08361v1.pdf},
+ author = {Jared Kaplan and Sam McCandlish and Tom Henighan and Tom B. Brown and Benjamin Chess and Rewon Child and Scott Gray and Alec Radford and Jeffrey Wu and Dario Amodei},
+ title = {Scaling laws for neural language models},
+ year = {2020}
+}
+
+@article{liu-2024-kivi,
+ abstract = {Efficiently serving large language models (LLMs) requires batching of many
+requests to reduce the cost per request. Yet, with larger batch sizes and
+longer context lengths, the key-value (KV) cache, which stores attention keys
+and values to avoid re-computations, significantly increases memory demands and
+becomes the new bottleneck in speed and memory usage. Additionally, the loading
+of the KV cache causes the computational core to be idle, which limits the
+inference speed. A straightforward and effective solution to reduce KV cache
+size is quantization, which decreases the total bytes taken by KV cache.
+However, there is a lack of in-depth studies that explore the element
+distribution of KV cache to understand the hardness and limitation of KV cache
+quantization. To fill the gap, we conducted a comprehensive study on the
+element distribution in KV cache of popular LLMs. Our findings indicate that
+the key cache should be quantized per-channel, i.e., group elements along the
+channel dimension and quantize them together. In contrast, the value cache
+should be quantized per-token. From this analysis, we developed a tuning-free
+2bit KV cache quantization algorithm named KIVI. With hardware-friendly
+implementation, KIVI can enable Llama, Falcon, and Mistral models to maintain
+almost the same quality while using $\mathbf{2.6\times}$ less peak memory
+(including model weight). This reduction in memory usage enables up to
+$\mathbf{4\times}$ larger batch size, bringing $\mathbf{2.35\times \sim
+3.47\times}$ throughput on real LLM inference workload. The source code is
+available at https://github.com/jy-yuan/KIVI.},
+ arxiv_url = {https://arxiv.org/pdf/2402.02750v2.pdf},
+ author = {Zirui Liu and Jiayi Yuan and Hongye Jin and Shaochen Zhong and Zhaozhuo Xu and Vladimir Braverman and Beidi Chen and Xia Hu},
+ doi = {10.13140/RG.2.2.28167.37282},
+ title = {Kivi: Plug- and-play 2bit kv cache quantization with streaming asymmetric quantization},
+ year = {2024}
+}
+
+@article{openai-2023-gpt,
+ abstract = {We report the development of GPT-4, a large-scale, multimodal model which can
+accept image and text inputs and produce text outputs. While less capable than
+humans in many real-world scenarios, GPT-4 exhibits human-level performance on
+various professional and academic benchmarks, including passing a simulated bar
+exam with a score around the top 10% of test takers. GPT-4 is a
+Transformer-based model pre-trained to predict the next token in a document.
+The post-training alignment process results in improved performance on measures
+of factuality and adherence to desired behavior. A core component of this
+project was developing infrastructure and optimization methods that behave
+predictably across a wide range of scales. This allowed us to accurately
+predict some aspects of GPT-4's performance based on models trained with no
+more than 1/1,000th the compute of GPT-4.},
+ arxiv_url = {https://arxiv.org/pdf/2303.08774v6.pdf},
+ author = {OpenAI and Josh Achiam and Steven Adler and Sandhini Agarwal and Lama Ahmad and Ilge Akkaya and Florencia Leoni Aleman and Diogo Almeida and Janko Altenschmidt and Sam Altman and Shyamal Anadkat and Red Avila and Igor Babuschkin and Suchir Balaji and Valerie Balcom and Paul Baltescu and Haiming Bao and Mohammad Bavarian and Jeff Belgum and Irwan Bello and Jake Berdine and Gabriel Bernadett-Shapiro and Christopher Berner and Lenny Bogdonoff and Oleg Boiko and Madelaine Boyd and Anna-Luisa Brakman and Greg Brockman and Tim Brooks and Miles Brundage and Kevin Button and Trevor Cai and Rosie Campbell and Andrew Cann and Brittany Carey and Chelsea Carlson and Rory Carmichael and Brooke Chan and Che Chang and Fotis Chantzis and Derek Chen and Sully Chen and Ruby Chen and Jason Chen and Mark Chen and Ben Chess and Chester Cho and Casey Chu and Hyung Won Chung and Dave Cummings and Jeremiah Currier and Yunxing Dai and Cory Decareaux and Thomas Degry and Noah Deutsch and Damien Deville and Arka Dhar and David Dohan and Steve Dowling and Sheila Dunning and Adrien Ecoffet and Atty Eleti and Tyna Eloundou and David Farhi and Liam Fedus and Niko Felix and Simón Posada Fishman and Juston Forte and Isabella Fulford and Leo Gao and Elie Georges and Christian Gibson and Vik Goel and Tarun Gogineni and Gabriel Goh and Rapha Gontijo-Lopes and Jonathan Gordon and Morgan Grafstein and Scott Gray and Ryan Greene and Joshua Gross and Shixiang Shane Gu and Yufei Guo and Chris Hallacy and Jesse Han and Jeff Harris and Yuchen He and Mike Heaton and Johannes Heidecke and Chris Hesse and Alan Hickey and Wade Hickey and Peter Hoeschele and Brandon Houghton and Kenny Hsu and Shengli Hu and Xin Hu and Joost Huizinga and Shantanu Jain and Shawn Jain and Joanne Jang and Angela Jiang and Roger Jiang and Haozhun Jin and Denny Jin and Shino Jomoto and Billie Jonn and Heewoo Jun and Tomer Kaftan and Łukasz Kaiser and Ali Kamali and Ingmar Kanitscheider and Nitish Shirish Keskar and Tabarak Khan and Logan Kilpatrick and Jong Wook Kim and Christina Kim and Yongjik Kim and Jan Hendrik Kirchner and Jamie Kiros and Matt Knight and Daniel Kokotajlo and Łukasz Kondraciuk and Andrew Kondrich and Aris Konstantinidis and Kyle Kosic and Gretchen Krueger and Vishal Kuo and Michael Lampe and Ikai Lan and Teddy Lee and Jan Leike and Jade Leung and Daniel Levy and Chak Ming Li and Rachel Lim and Molly Lin and Stephanie Lin and Mateusz Litwin and Theresa Lopez and Ryan Lowe and Patricia Lue and Anna Makanju and Kim Malfacini and Sam Manning and Todor Markov and Yaniv Markovski and Bianca Martin and Katie Mayer and Andrew Mayne and Bob McGrew and Scott Mayer McKinney and Christine McLeavey and Paul McMillan and Jake McNeil and David Medina and Aalok Mehta and Jacob Menick and Luke Metz and Andrey Mishchenko and Pamela Mishkin and Vinnie Monaco and Evan Morikawa and Daniel Mossing and Tong Mu and Mira Murati and Oleg Murk and David Mély and Ashvin Nair and Reiichiro Nakano and Rajeev Nayak and Arvind Neelakantan and Richard Ngo and Hyeonwoo Noh and Long Ouyang and Cullen O'Keefe and Jakub Pachocki and Alex Paino and Joe Palermo and Ashley Pantuliano and Giambattista Parascandolo and Joel Parish and Emy Parparita and Alex Passos and Mikhail Pavlov and Andrew Peng and Adam Perelman and Filipe de Avila Belbute Peres and Michael Petrov and Henrique Ponde de Oliveira Pinto and Michael and Pokorny and Michelle Pokrass and Vitchyr H. Pong and Tolly Powell and Alethea Power and Boris Power and Elizabeth Proehl and Raul Puri and Alec Radford and Jack Rae and Aditya Ramesh and Cameron Raymond and Francis Real and Kendra Rimbach and Carl Ross and Bob Rotsted and Henri Roussez and Nick Ryder and Mario Saltarelli and Ted Sanders and Shibani Santurkar and Girish Sastry and Heather Schmidt and David Schnurr and John Schulman and Daniel Selsam and Kyla Sheppard and Toki Sherbakov and Jessica Shieh and Sarah Shoker and Pranav Shyam and Szymon Sidor and Eric Sigler and Maddie Simens and Jordan Sitkin and Katarina Slama and Ian Sohl and Benjamin Sokolowsky and Yang Song and Natalie Staudacher and Felipe Petroski Such and Natalie Summers and Ilya Sutskever and Jie Tang and Nikolas Tezak and Madeleine B. Thompson and Phil Tillet and Amin Tootoonchian and Elizabeth Tseng and Preston Tuggle and Nick Turley and Jerry Tworek and Juan Felipe Cerón Uribe and Andrea Vallone and Arun Vijayvergiya and Chelsea Voss and Carroll Wainwright and Justin Jay Wang and Alvin Wang and Ben Wang and Jonathan Ward and Jason Wei and CJ Weinmann and Akila Welihinda and Peter Welinder and Jiayi Weng and Lilian Weng and Matt Wiethoff and Dave Willner and Clemens Winter and Samuel Wolrich and Hannah Wong and Lauren Workman and Sherwin Wu and Jeff Wu and Michael Wu and Kai Xiao and Tao Xu and Sarah Yoo and Kevin Yu and Qiming Yuan and Wojciech Zaremba and Rowan Zellers and Chong Zhang and Marvin Zhang and Shengjia Zhao and Tianhao Zheng and Juntang Zhuang and William Zhuk and Barret Zoph},
+ title = {Gpt-4 technical report},
+ year = {2023}
+}
+
+@article{pope-2022-efficiently,
+ abstract = {We study the problem of efficient generative inference for Transformer
+models, in one of its most challenging settings: large deep models, with tight
+latency targets and long sequence lengths. Better understanding of the
+engineering tradeoffs for inference for large Transformer-based models is
+important as use cases of these models are growing rapidly throughout
+application areas. We develop a simple analytical model for inference
+efficiency to select the best multi-dimensional partitioning techniques
+optimized for TPU v4 slices based on the application requirements. We combine
+these with a suite of low-level optimizations to achieve a new Pareto frontier
+on the latency and model FLOPS utilization (MFU) tradeoffs on 500B+ parameter
+models that outperforms the FasterTransformer suite of benchmarks. We further
+show that with appropriate partitioning, the lower memory requirements of
+multiquery attention (i.e. multiple query heads share single key/value head)
+enables scaling up to 32x larger context lengths. Finally, we achieve a
+low-batch-size latency of 29ms per token during generation (using int8 weight
+quantization) and a 76% MFU during large-batch-size processing of input tokens,
+while supporting a long 2048-token context length on the PaLM 540B parameter
+model.},
+ arxiv_url = {https://arxiv.org/pdf/2211.05102v1.pdf},
+ author = {Reiner Pope and Sholto Douglas and Aakanksha Chowdhery and Jacob Devlin and James Bradbury and Anselm Levskaya and Jonathan Heek and Kefan Xiao and Shivani Agrawal and Jeff Dean},
+ title = {Efficiently scaling transformer inference},
+ year = {2022}
+}
+
+@article{touvron-2023-llama,
+ abstract = {In this work, we develop and release Llama 2, a collection of pretrained and
+fine-tuned large language models (LLMs) ranging in scale from 7 billion to 70
+billion parameters. Our fine-tuned LLMs, called Llama 2-Chat, are optimized for
+dialogue use cases. Our models outperform open-source chat models on most
+benchmarks we tested, and based on our human evaluations for helpfulness and
+safety, may be a suitable substitute for closed-source models. We provide a
+detailed description of our approach to fine-tuning and safety improvements of
+Llama 2-Chat in order to enable the community to build on our work and
+contribute to the responsible development of LLMs.},
+ arxiv_url = {https://arxiv.org/pdf/2307.09288v2.pdf},
+ author = {Hugo Touvron and Louis Martin and Kevin Stone and Peter Albert and Amjad Almahairi and Yasmine Babaei and Nikolay Bashlykov and Soumya Batra and Prajjwal Bhargava and Shruti Bhosale and Dan Bikel and Lukas Blecher and Cristian Canton Ferrer and Moya Chen and Guillem Cucurull and David Esiobu and Jude Fernandes and Jeremy Fu and Wenyin Fu and Brian Fuller and Cynthia Gao and Vedanuj Goswami and Naman Goyal and Anthony Hartshorn and Saghar Hosseini and Rui Hou and Hakan Inan and Marcin Kardas and Viktor Kerkez and Madian Khabsa and Isabel Kloumann and Artem Korenev and Punit Singh Koura and Marie-Anne Lachaux and Thibaut Lavril and Jenya Lee and Diana Liskovich and Yinghai Lu and Yuning Mao and Xavier Martinet and Todor Mihaylov and Pushkar Mishra and Igor Molybog and Yixin Nie and Andrew Poulton and Jeremy Reizenstein and Rashi Rungta and Kalyan Saladi and Alan Schelten and Ruan Silva and Eric Michael Smith and Ranjan Subramanian and Xiaoqing Ellen Tan and Binh Tang and Ross Taylor and Adina Williams and Jian Xiang Kuan and Puxin Xu and Zheng Yan and Iliyan Zarov and Yuchen Zhang and Angela Fan and Melanie Kambadur and Sharan Narang and Aurelien Rodriguez and Robert Stojnic and Sergey Edunov and Thomas Scialom},
+ title = {Llama 2: Open foundation and fine-tuned chat models},
+ year = {2023}
+}
+
+@article{xiao-2023-efficient,
+ abstract = {Deploying Large Language Models (LLMs) in streaming applications such as
+multi-round dialogue, where long interactions are expected, is urgently needed
+but poses two major challenges. Firstly, during the decoding stage, caching
+previous tokens' Key and Value states (KV) consumes extensive memory. Secondly,
+popular LLMs cannot generalize to longer texts than the training sequence
+length. Window attention, where only the most recent KVs are cached, is a
+natural approach -- but we show that it fails when the text length surpasses
+the cache size. We observe an interesting phenomenon, namely attention sink,
+that keeping the KV of initial tokens will largely recover the performance of
+window attention. In this paper, we first demonstrate that the emergence of
+attention sink is due to the strong attention scores towards initial tokens as
+a "sink" even if they are not semantically important. Based on the above
+analysis, we introduce StreamingLLM, an efficient framework that enables LLMs
+trained with a finite length attention window to generalize to infinite
+sequence lengths without any fine-tuning. We show that StreamingLLM can enable
+Llama-2, MPT, Falcon, and Pythia to perform stable and efficient language
+modeling with up to 4 million tokens and more. In addition, we discover that
+adding a placeholder token as a dedicated attention sink during pre-training
+can further improve streaming deployment. In streaming settings, StreamingLLM
+outperforms the sliding window recomputation baseline by up to 22.2x speedup.
+Code and datasets are provided at https://github.com/mit-han-lab/streaming-llm.},
+ arxiv_url = {https://arxiv.org/pdf/2309.17453v4.pdf},
+ author = {Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis},
+ title = {Efficient streaming language models with attention sinks},
+ year = {2023}
+}
