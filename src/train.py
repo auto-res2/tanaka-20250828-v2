@@ -230,9 +230,24 @@ class RevBlock(nn.Module):
         self.ln2 = ln2
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x1, x2 = x.chunk(2, dim=-1)
-        y1 = x1 + self.F(self.ln1(x2))
-        y2 = x2 + self.G(self.ln2(y1))
+        # Channel-wise additive coupling. Our F and G expect full d_model inputs.
+        # We "lift" half-vectors to full dimension by zero-padding, apply module, then
+        # project back by slicing the first half. This preserves the reversible structure
+        # while keeping modules unchanged.
+        B, T, C = x.shape
+        C2 = C // 2
+        x1, x2 = x.split(C2, dim=-1)
+
+        # Lift x2 to full dim and apply F
+        x2_full = torch.cat([x2, torch.zeros_like(x1)], dim=-1)
+        f_out_half = self.F(self.ln1(x2_full))[..., :C2]
+        y1 = x1 + f_out_half
+
+        # Lift y1 to full dim and apply G
+        y1_full = torch.cat([y1, torch.zeros_like(x2)], dim=-1)
+        g_out_half = self.G(self.ln2(y1_full))[..., :C2]
+        y2 = x2 + g_out_half
+
         return torch.cat([y1, y2], dim=-1)
 
 
@@ -434,7 +449,7 @@ def run_training(cfg: TrainConfig):
     warmup = max(1, cfg.warmup)
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lr_lambda=lambda s: min(1.0, (s+1)/warmup))
 
-    scaler = torch.cuda.amp.GradScaler(enabled=('cuda' in cfg.device))
+    scaler = torch.amp.GradScaler('cuda', enabled=('cuda' in cfg.device))
 
     cfg.accum_steps = compute_accum_steps(cfg)
     tokens_per_micro = cfg.batch_size * cfg.seq_len
@@ -462,7 +477,7 @@ def run_training(cfg: TrainConfig):
                 itr = iter(train_loader)
                 xb, yb = next(itr)
             xb, yb = xb.to(cfg.device, non_blocking=True), yb.to(cfg.device, non_blocking=True)
-            with torch.cuda.amp.autocast(enabled=('cuda' in cfg.device)):
+            with torch.amp.autocast('cuda', enabled=('cuda' in cfg.device)):
                 logits = model(xb)
                 loss = F.cross_entropy(logits.view(-1, logits.size(-1)), yb.view(-1)) / cfg.accum_steps
             scaler.scale(loss).backward()
