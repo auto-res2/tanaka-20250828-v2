@@ -1,0 +1,10 @@
+{
+  "research_topic": "small language modelのメモリを抑えた学習方法",
+  "queries": [
+    "memory-efficient transformers",
+    "low-memory finetuning",
+    "parameter-efficient tuning",
+    "lightweight language models",
+    "memory optimization training"
+  ]
+}
