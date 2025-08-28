@@ -1,1 +1,7 @@
-# Please list the required python packages.
+torch>=2.1.0
+transformers>=4.41.0
+datasets>=2.20.0
+numpy>=1.23.0
+matplotlib>=3.7.0
+scikit-learn>=1.4.0
+pyyaml>=6.0
