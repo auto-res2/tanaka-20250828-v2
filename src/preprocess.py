@@ -5,7 +5,7 @@ Data preprocessing and dataset/dataloader creation for RASST experiments.
 - Supports WikiText-103 if datasets/transformers are available.
 - Provides synthetic data generators for quick tests and offline runs.
 """
-from typing import Optional, Tuple
+from typing import Optional, Tuple, TYPE_CHECKING
 import math
 import numpy as np
 import torch
@@ -23,7 +23,8 @@ try:
 except Exception:
     HAS_TRANSFORMERS = False
 
-from .train import TrainConfig  # for type hints only
+if TYPE_CHECKING:
+    from .train import TrainConfig  # for type hints only
 
 
 class LMTextDataset(Dataset):
@@ -109,7 +110,7 @@ def get_tokenizer(name: str):
     return tok
 
 
-def make_datasets(cfg: TrainConfig):
+def make_datasets(cfg: 'TrainConfig'):
     tokenizer = None
     vocab_size = 50257
 
