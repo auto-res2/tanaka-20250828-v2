@@ -27,7 +27,7 @@ from .train import (
 from .preprocess import SyntheticSeqClassDataset, SyntheticLMDataset, reset_peak_mem, peak_mem_gb
 
 
-IMAGES_DIR = os.path.join('.research', 'iteration1', 'images')
+IMAGES_DIR = os.path.join('.research', 'iteration2', 'images')
 RESULTS_DIR = os.path.join('.research', 'iteration1')
 os.makedirs(IMAGES_DIR, exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)

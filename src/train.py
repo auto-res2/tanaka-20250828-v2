@@ -91,13 +91,17 @@ class LoRALinear(nn.Module):
         self.r = r
         self.alpha = alpha
         self.dropout = nn.Dropout(dropout)
+        # Share base weights (frozen)
         self.weight = linear.weight
         self.bias = linear.bias
         for p in [self.weight, self.bias]:
             if p is not None:
                 p.requires_grad = False
-        self.A = nn.Parameter(torch.zeros(self.out_features, r))
-        self.B = nn.Parameter(torch.zeros(r, self.in_features))
+        # Ensure LoRA params are on the same device and dtype as the base weight
+        dev = self.weight.device
+        dtype = self.weight.dtype
+        self.A = nn.Parameter(torch.zeros(self.out_features, r, device=dev, dtype=dtype))
+        self.B = nn.Parameter(torch.zeros(r, self.in_features, device=dev, dtype=dtype))
         nn.init.kaiming_uniform_(self.B, a=math.sqrt(5))
         nn.init.zeros_(self.A)
         self.scaling = alpha / r
