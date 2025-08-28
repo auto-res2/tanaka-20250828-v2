@@ -6,5 +6,82 @@
     "parameter-efficient tuning",
     "lightweight language models",
     "memory optimization training"
+  ],
+  "research_study_list": [
+    {
+      "title": "Blockwise Parallel Transformers for Large Context Models"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "Reformer: The Efficient Transformer"
+    },
+    {
+      "title": "MemoryFormer : Minimize Transformer Computation by Removing Fully-Connected Layers"
+    },
+    {
+      "title": "Shapeshifter: a Parameter-efficient Transformer using Factorized Reshaped Matrices"
+    },
+    {
+      "title": "Reducing Fine-Tuning Memory Overhead by Approximate and Memory-Sharing Backpropagation"
+    },
+    {
+      "title": "LST: Ladder Side-Tuning for Parameter and Memory Efficient Transfer Learning"
+    },
+    {
+      "title": "VeLoRA: Memory Efficient Training using Rank-1 Sub-Token Projections"
+    },
+    {
+      "title": "Fine-Tuning Language Models with Just Forward Passes"
+    },
+    {
+      "title": "Fine-Tuning Language Models with Just Forward Passes"
+    },
+    {
+      "title": "Parameter-Efficient Fine-Tuning Design Spaces"
+    },
+    {
+      "title": "Spectral Adapter: Fine-Tuning in Spectral Space"
+    },
+    {
+      "title": "Res-Tuning: A Flexible and Efficient Tuning Paradigm via Unbinding Tuner from Backbone"
+    },
+    {
+      "title": "ReFT: Representation Finetuning for Language Models"
+    },
+    {
+      "title": "LST: Ladder Side-Tuning for Parameter and Memory Efficient Transfer Learning"
+    },
+    {
+      "title": "MobileLLM: Optimizing Sub-billion Parameter Language Models for On-Device Use Cases"
+    },
+    {
+      "title": "VeLoRA: Memory Efficient Training using Rank-1 Sub-Token Projections"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "NTK-approximating MLP Fusion for Efficient Language Model Fine-tuning"
+    },
+    {
+      "title": "MODeL: Memory Optimizations for Deep Learning"
+    },
+    {
+      "title": "Few-bit Backward: Quantized Gradients of Activation Functions for Memory Footprint Reduction"
+    },
+    {
+      "title": "Efficient Combination of Rematerialization and Offloading for Training DNNs"
+    },
+    {
+      "title": "Coop: Memory is not a Commodity"
+    },
+    {
+      "title": "Memory Optimization for Deep Networks"
+    }
   ]
 }
