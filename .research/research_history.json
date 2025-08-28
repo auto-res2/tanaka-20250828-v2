@@ -1,0 +1,10 @@
+{
+  "research_topic": "small language modelの学習でメモリを抑えられるアーキテクチャ",
+  "queries": [
+    "memory efficient transformer",
+    "parameter efficient lm",
+    "low memory training transformers",
+    "reformer attention",
+    "weight sharing transformer"
+  ]
+}
