@@ -1,0 +1,19 @@
+# Default configuration for RASST experiments
+# This file is optional; src.main uses CLI args by default.
+experiment: test
+model_size: TINY  # choices: TINY, 125M, 355M
+device: cuda:0
+# data_pattern: wikitext or synthetic_* patterns
+data_pattern: synthetic_uniform
+train:
+  seq_len: 64
+  steps: 10
+  eval_every: 5
+  batch_size: 4
+  lr: 0.0003
+  warmup: 5
+  reversible: true
+  inplace_ops: true
+  shared_structured: true
+  adapter_rank: 32
+  relora_steps: 20
